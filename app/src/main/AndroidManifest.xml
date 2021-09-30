@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Contactmanager">
         <activity
+            android:name=".ContactListActivity"
+            android:exported="true" />
+        <activity
             android:name=".ContactActivity"
             android:exported="true" />
         <activity
