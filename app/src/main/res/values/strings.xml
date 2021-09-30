@@ -2,4 +2,11 @@
     <string name="app_name">Contact Manager</string>
     <string name="mnu_add_contact">Add Contact</string>
     <string name="mnu_contact_list">View All Contacts</string>
+    <string name="contactName">Name</string>
+    <string name="contactLastName">Last Name</string>
+    <string name="contactPhone">Phone</string>
+    <string name="contactEmail">Email</string>
+    <string name="contactAddress">Address</string>
+    <string name="save">save</string>
+    <string name="msgSuccess">The information has been saved.</string>
 </resources>

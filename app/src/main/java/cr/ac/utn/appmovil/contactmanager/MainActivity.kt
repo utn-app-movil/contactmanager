@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val btnContactList: Button = findViewById<Button>(R.id.main_btnContactList)
         btnContactList.setOnClickListener(View.OnClickListener { view ->
             val intent = Intent(this, ContactListActivity::class.java)

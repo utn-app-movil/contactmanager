@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Contact Manager</string>
+    <string name="mnu_add_contact">Nuevo Contacto</string>
+    <string name="mnu_contact_list">Ver Contactos</string>
+    <string name="contactName">Nombre</string>
+    <string name="contactLastName">Apellidos</string>
+    <string name="contactPhone">Celular</string>
+    <string name="contactEmail">Correo</string>
+    <string name="contactAddress">Dirección</string>
+    <string name="save">Guardar</string>
+    <string name="msgSuccess">Se ha guardado con éxito.</string>
+</resources>
