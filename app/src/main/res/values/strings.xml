@@ -8,5 +8,9 @@
     <string name="contactEmail">Email</string>
     <string name="contactAddress">Address</string>
     <string name="save">save</string>
-    <string name="msgSuccess">The information has been saved.</string>
+    <string name="msgSave">The information has been saved.</string>
+    <string name="msgDelete">The information has been deleted.</string>
+    <string name="delete">Delete</string>
+    <string name="msgInvalidData">Missing or invalid information. Please check.</string>
+    <string name="msgInvalidContact">The contact is not correct.</string>
 </resources>

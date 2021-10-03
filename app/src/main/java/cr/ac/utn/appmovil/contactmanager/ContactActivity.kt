@@ -8,7 +8,9 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
+import cr.ac.utn.appmovil.controller.ContactController
 import cr.ac.utn.appmovil.model.*
 
 class ContactActivity : AppCompatActivity() {
@@ -31,11 +33,40 @@ class ContactActivity : AppCompatActivity() {
                 saveContact()
                 true
             }
+            R.id.mnuDelete -> {
+                deleteContact()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     fun saveContact(){
-        Toast.makeText(this, getString(R.string.msgSuccess).toString(),Toast.LENGTH_LONG).show()
+        if (dataValidation()){
+            val contact = Contact()
+            contact.Name = findViewById<EditText>(R.id.txtContactName).toString()
+            contact.LastName = findViewById<EditText>(R.id.txtContactLastName).toString()
+            contact.Phone = findViewById<EditText>(R.id.txtContactPhone).toString()?.toInt()
+            contact.Email = findViewById<EditText>(R.id.txtContactEmail).toString()
+            contact.Address = findViewById<EditText>(R.id.txtContactAddress).toString()
+            ContactController.addContact(contact)
+            Toast.makeText(this, getString(R.string.msgSave).toString(),Toast.LENGTH_LONG).show()
+        }else{
+            Toast.makeText(this, getString(R.string.msgInvalidData).toString(),Toast.LENGTH_LONG).show()
+        }
+    }
+
+    fun deleteContact(){
+        if (dataValidation()){
+
+            Toast.makeText(this, getString(R.string.msgDelete).toString(),Toast.LENGTH_LONG).show()
+        }else{
+            Toast.makeText(this, getString(R.string.msgInvalidData).toString(),Toast.LENGTH_LONG).show()
+        }
+    }
+
+    fun dataValidation(): Boolean{
+
+        return true
     }
 }
