@@ -1,9 +1,9 @@
-package cr.ac.utn.appmovil.controller
+package cr.ac.utn.appmovil.model
 import android.content.res.Resources
 import cr.ac.utn.appmovil.contactmanager.R
-import cr.ac.utn.appmovil.model.Contact
+import cr.ac.utn.appmovil.identities.Contact
 
-class ContactController {
+class ContactModel {
     companion object  {
         private var contactList = mutableListOf<Contact>()
 
@@ -24,5 +24,11 @@ class ContactController {
         }
 
         fun getContacts()= contactList
+
+        fun getContactNames(): List<String> {
+            val names = mutableListOf<String>()
+            contactList.forEach{i-> names.add("${i.Name} ${i.LastName}")}
+            return names.toList()
+        }
     }
 }

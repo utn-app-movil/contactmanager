@@ -9,3 +9,4 @@
 3. Despliegue de listda de información
 4. Pantalla de carga de datos
 5. Themes
+6. PutExtra

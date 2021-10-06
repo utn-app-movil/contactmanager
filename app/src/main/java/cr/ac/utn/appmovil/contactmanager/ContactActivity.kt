@@ -1,17 +1,14 @@
 package cr.ac.utn.appmovil.contactmanager
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import cr.ac.utn.appmovil.controller.ContactController
-import cr.ac.utn.appmovil.model.*
+import cr.ac.utn.appmovil.identities.Contact
+import cr.ac.utn.appmovil.model.ContactModel
 
 class ContactActivity : AppCompatActivity() {
 
@@ -44,12 +41,12 @@ class ContactActivity : AppCompatActivity() {
     fun saveContact(){
         if (dataValidation()){
             val contact = Contact()
-            contact.Name = findViewById<EditText>(R.id.txtContactName).toString()
-            contact.LastName = findViewById<EditText>(R.id.txtContactLastName).toString()
-            contact.Phone = findViewById<EditText>(R.id.txtContactPhone).toString()?.toInt()
-            contact.Email = findViewById<EditText>(R.id.txtContactEmail).toString()
-            contact.Address = findViewById<EditText>(R.id.txtContactAddress).toString()
-            ContactController.addContact(contact)
+            contact.Name = findViewById<EditText>(R.id.txtContactName).text.toString()
+            contact.LastName = findViewById<EditText>(R.id.txtContactLastName).text.toString()
+            contact.Phone = findViewById<EditText>(R.id.txtContactPhone).text.toString()?.toInt()
+            contact.Email = findViewById<EditText>(R.id.txtContactEmail).text.toString()
+            contact.Address = findViewById<EditText>(R.id.txtContactAddress).text.toString()
+            ContactModel.addContact(contact)
             Toast.makeText(this, getString(R.string.msgSave).toString(),Toast.LENGTH_LONG).show()
         }else{
             Toast.makeText(this, getString(R.string.msgInvalidData).toString(),Toast.LENGTH_LONG).show()

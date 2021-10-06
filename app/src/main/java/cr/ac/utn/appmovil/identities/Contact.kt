@@ -1,4 +1,4 @@
-package cr.ac.utn.appmovil.model
+package cr.ac.utn.appmovil.identities
 
 class Contact {
     private var _id: String =""
