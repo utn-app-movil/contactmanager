@@ -9,7 +9,4 @@
 3. Despliegue personalizada de información
 4. PutExtra
 5. Edición de información.
-6. Visible and enable menuItem
-7. Funcionalidad de menú flotante
-8. Pantalla de carga de datos
-9. Themes
+
