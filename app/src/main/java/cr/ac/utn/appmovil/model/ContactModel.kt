@@ -23,11 +23,23 @@ class ContactModel {
             }
         }
 
-        fun getContacts()= contactList
+        fun getContacts()= contactList.toList()
+
+        fun getContact(id: String): Contact{
+            try {
+                var result = contactList.filter { (it.FullName).equals(id) }
+                if (!result.any())
+                    throw Exception(Resources.getSystem().getString(R.string.msgContactNoFound).toString())
+
+                return result[0]
+            }catch (e: Exception){
+                throw e
+            }
+        }
 
         fun getContactNames(): List<String> {
             val names = mutableListOf<String>()
-            contactList.forEach{i-> names.add("${i.Name} ${i.LastName}")}
+            contactList.forEach{i-> names.add(i.FullName)}
             return names.toList()
         }
     }

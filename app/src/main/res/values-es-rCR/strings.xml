@@ -14,4 +14,6 @@
     <string name="delete">Eliminar</string>
     <string name="msgInvalidData">Información es incompleta o inválida. Por favor revisar.</string>
     <string name="msgInvalidContact">El contacto especificado no es correcto.</string>
+    <string name="msgContactNoFound">El contacto no se encuentra registrado.</string>
+    <string name="mnu_contact_list_custom">Ver Contactos personalizado</string>
 </resources>

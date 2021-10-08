@@ -31,6 +31,8 @@ class Contact {
         get() = this._lastName
         set(value) {this._lastName = value}
 
+    val FullName get() = this._name + " " + this._lastName
+
     var Phone: Int
         get() = this._phone
         set(value) {this._phone = value}
