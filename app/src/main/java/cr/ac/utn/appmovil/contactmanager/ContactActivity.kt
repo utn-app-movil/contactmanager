@@ -10,6 +10,7 @@ import android.widget.Toast
 import cr.ac.utn.appmovil.identities.Contact
 import cr.ac.utn.appmovil.model.ContactModel
 import cr.ac.utn.appmovil.util.EXTRA_MESSAGE_CONTACTID
+import java.lang.Exception
 
 class ContactActivity : AppCompatActivity() {
 
@@ -54,19 +55,23 @@ class ContactActivity : AppCompatActivity() {
     }
 
     fun saveContact(){
-        val contact = Contact()
-        contact.Name = txtName.text.toString()
-        contact.LastName = txtLastName.text.toString()
-        contact.Phone = txtPhone.text.toString()?.toInt()
-        contact.Email = txtEmail.text.toString()
-        contact.Address = txtAddress.text.toString()
+        try {
+            val contact = Contact()
+            contact.Name = txtName.text.toString()
+            contact.LastName = txtLastName.text.toString()
+            contact.Phone = txtPhone.text.toString()?.toInt()
+            contact.Email = txtEmail.text.toString()
+            contact.Address = txtAddress.text.toString()
 
-        if (dataValidation(contact)){
-            ContactModel.addContact(contact)
-            cleanScreen()
-            Toast.makeText(this, getString(R.string.msgSave).toString(),Toast.LENGTH_LONG).show()
-        }else{
-            Toast.makeText(this, getString(R.string.msgInvalidData).toString(),Toast.LENGTH_LONG).show()
+            if (dataValidation(contact)){
+                ContactModel.addContact(contact)
+                cleanScreen()
+                Toast.makeText(this, getString(R.string.msgSave).toString(),Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this, getString(R.string.msgInvalidData).toString(),Toast.LENGTH_LONG).show()
+            }
+        }catch (e: Exception){
+            Toast.makeText(this, e.message.toString(),Toast.LENGTH_LONG).show()
         }
     }
 
@@ -92,13 +97,16 @@ class ContactActivity : AppCompatActivity() {
     }
 
     fun loadEditContact(id: String){
-        val contact = ContactModel.getContact(id)
-        txtName.setText(contact.Name)
-        txtLastName.setText(contact.LastName)
-        txtPhone.setText(contact.Phone.toString())
-        txtEmail.setText(contact.Email)
-        txtAddress.setText(contact.Address)
-
+        try{
+            val contact = ContactModel.getContact(id)
+            txtName.setText(contact.Name)
+            txtLastName.setText(contact.LastName)
+            txtPhone.setText(contact.Phone.toString())
+            txtEmail.setText(contact.Email)
+            txtAddress.setText(contact.Address)
+        }catch (e: Exception){
+            Toast.makeText(this, e.message.toString(),Toast.LENGTH_LONG).show()
+        }
         //val btnDelete = findViewById<MenuItem>(R.id.mnuDelete)
         //btnDelete.setVisible(false)
     }
