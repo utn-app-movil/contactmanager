@@ -4,10 +4,9 @@
 - Este proyecto corre con el API 21
 - Tiene las siguientes funcionalidades:
 
-1. Funcionalidad de menú
-2. Llamado de activity
-3. Mensajeria Toast
-4. Uso de idiomas
-5. Uso de clases
-6. Llamado de metodos estaticos
-7. Parent activity
+1. Almacenamiento de información en colección
+2. Despliegue de listda de información. 
+3. Despliegue personalizada de información
+4. PutExtra
+5. Edición de información.
+

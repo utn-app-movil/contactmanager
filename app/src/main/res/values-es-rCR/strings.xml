@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Contact Manager</string>
+    <string name="app_name">Gestor de Contactos</string>
     <string name="mnu_add_contact">Nuevo Contacto</string>
     <string name="mnu_contact_list">Ver Contactos</string>
     <string name="contactName">Nombre</string>
@@ -9,5 +9,11 @@
     <string name="contactEmail">Correo</string>
     <string name="contactAddress">Dirección</string>
     <string name="save">Guardar</string>
-    <string name="msgSuccess">Se ha guardado con éxito.</string>
+    <string name="msgSave">Se ha guardado con éxito.</string>
+    <string name="msgDelete">Se ha borrado con éxito.</string>
+    <string name="delete">Eliminar</string>
+    <string name="msgInvalidData">Información es incompleta o inválida. Por favor revisar.</string>
+    <string name="msgInvalidContact">El contacto especificado no es correcto.</string>
+    <string name="msgContactNoFound">El contacto no se encuentra registrado.</string>
+    <string name="mnu_contact_list_custom">Ver Contactos personalizado</string>
 </resources>

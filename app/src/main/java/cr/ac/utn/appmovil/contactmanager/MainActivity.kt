@@ -17,10 +17,13 @@ class MainActivity : AppCompatActivity() {
 
         val btnContactList: Button = findViewById<Button>(R.id.main_btnContactList)
         btnContactList.setOnClickListener(View.OnClickListener { view ->
-            val intent = Intent(this, ContactListActivity::class.java)
-            startActivity(intent)
+            openActivity(ContactListActivity::class.java)
         })
 
+        val btnContactListCustom: Button = findViewById<Button>(R.id.main_btnContactListCustom)
+        btnContactListCustom.setOnClickListener(View.OnClickListener { view ->
+            openActivity(ContactListCustomActivity::class.java)
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -48,8 +51,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openActivity(objclass: Class<*>){
-        util.openActivity(this,objclass)
-        //val intent = Intent(this, objclass)
-        //startActivity(intent)
+        util.openActivity(this,objclass, "", "")
     }
 }

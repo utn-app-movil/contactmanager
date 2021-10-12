@@ -1,4 +1,4 @@
-package cr.ac.utn.appmovil.model
+package cr.ac.utn.appmovil.identities
 
 class Contact {
     private var _id: String =""
@@ -30,6 +30,8 @@ class Contact {
     var LastName: String
         get() = this._lastName
         set(value) {this._lastName = value}
+
+    val FullName get() = this._name + " " + this._lastName
 
     var Phone: Int
         get() = this._phone

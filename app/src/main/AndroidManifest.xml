@@ -10,15 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Contactmanager">
         <activity
-            android:name=".ContactListActivity"
+            android:name=".ContactListCustomActivity"
             android:exported="true" />
+        <activity
+            android:name=".ContactListActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".ContactActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".MainActivity"
