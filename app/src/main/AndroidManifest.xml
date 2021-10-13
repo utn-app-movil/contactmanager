@@ -10,8 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Contactmanager">
         <activity
+            android:name=".RecyclerViewActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
             android:name=".ContactListCustomActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".ContactListActivity"
             android:exported="true"

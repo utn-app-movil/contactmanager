@@ -15,4 +15,6 @@
     <string name="msgInvalidContact">The contact is not correct.</string>
     <string name="msgContactNoFound">The contact is not found.</string>
     <string name="mnu_contact_list_custom">View Contact List Custom</string>
+    <string name="mnuRecycleView">Recycler View List</string>
+    <string name="DisplayDialog">Display Dialog</string>
 </resources>

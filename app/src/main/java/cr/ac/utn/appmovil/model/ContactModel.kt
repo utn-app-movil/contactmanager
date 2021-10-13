@@ -15,7 +15,7 @@ class ContactModel {
             try {
                 var result = contactList.filter { it.Id.equals(id) }
                 if (!result.any())
-                    throw Exception(Resources.getSystem().getString(R.string.msgInvalidContact).toString())
+                    throw Exception(Resources.getSystem().getString(R.string.msgInvalidContact))
 
                 contactList.remove(result[0])
             }catch (e: Exception){

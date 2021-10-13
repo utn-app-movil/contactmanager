@@ -1,5 +1,7 @@
 package cr.ac.utn.appmovil.contactmanager
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,6 +25,16 @@ class MainActivity : AppCompatActivity() {
         val btnContactListCustom: Button = findViewById<Button>(R.id.main_btnContactListCustom)
         btnContactListCustom.setOnClickListener(View.OnClickListener { view ->
             openActivity(ContactListCustomActivity::class.java)
+        })
+
+        val btnRecyclerView: Button = findViewById<Button>(R.id.btnRecycleView)
+        btnRecyclerView.setOnClickListener(View.OnClickListener { view ->
+            openActivity(RecyclerViewActivity::class.java)
+        })
+
+        val btnDisplayDialog: Button = findViewById<Button>(R.id.btngetDialog)
+        btnDisplayDialog.setOnClickListener(View.OnClickListener { view ->
+            DisplayDialog()
         })
     }
 
@@ -52,5 +64,28 @@ class MainActivity : AppCompatActivity() {
 
     fun openActivity(objclass: Class<*>){
         util.openActivity(this,objclass, "", "")
+    }
+
+    fun DisplayDialog(){
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setMessage("Do you want to close this application ?")
+            // if the dialog is cancelable
+            .setCancelable(false)
+            // positive button text and action
+            .setPositiveButton("Proceed", DialogInterface.OnClickListener {
+                    dialog, id -> finish()
+            })
+            // negative button text and action
+            .setNegativeButton("Cancel", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+
+        // create dialog box
+        val alert = dialogBuilder.create()
+        // set title for alert dialog box
+        alert.setTitle("Displaying Dialog")
+        // show alert dialog
+        alert.show()
     }
 }
