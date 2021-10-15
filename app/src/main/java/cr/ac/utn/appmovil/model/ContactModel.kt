@@ -28,9 +28,10 @@ class ContactModel {
         fun getContact(id: String): Contact{
             try {
                 var result = contactList.filter { (it.FullName).equals(id) }
-                if (!result.any())
-                    throw Exception(Resources.getSystem().getString(R.string.msgContactNoFound).toString())
-
+                if (!result.any()){
+                    val system  = Resources.getSystem()
+                    throw Exception(system.getString(R.string.msgContactNoFound).toString())
+                }
                 return result[0]
             }catch (e: Exception){
                 throw e

@@ -1,18 +1,20 @@
 package cr.ac.utn.appmovil.contactmanager
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import cr.ac.utn.appmovil.util.*
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,6 +37,11 @@ class MainActivity : AppCompatActivity() {
         val btnDisplayDialog: Button = findViewById<Button>(R.id.btngetDialog)
         btnDisplayDialog.setOnClickListener(View.OnClickListener { view ->
             DisplayDialog()
+        })
+
+        val btnCustomDisplayDialog: Button = findViewById<Button>(R.id.btnDisplayCustomDialog)
+        btnCustomDisplayDialog.setOnClickListener(View.OnClickListener { view ->
+            DisplayCustomeDialog()
         })
     }
 
@@ -69,23 +76,44 @@ class MainActivity : AppCompatActivity() {
     fun DisplayDialog(){
         val dialogBuilder = AlertDialog.Builder(this)
 
-        dialogBuilder.setMessage("Do you want to close this application ?")
-            // if the dialog is cancelable
+        //dialogBuilder.apply { setTitle("Hello") }.create().show()
+
+        dialogBuilder.setMessage(getString(R.string.QuestionCloseApp).toString())
             .setCancelable(false)
-            // positive button text and action
-            .setPositiveButton("Proceed", DialogInterface.OnClickListener {
+            .setPositiveButton(getString(R.string.Ok).toString(), DialogInterface.OnClickListener {
                     dialog, id -> finish()
             })
-            // negative button text and action
-            .setNegativeButton("Cancel", DialogInterface.OnClickListener {
+            .setNegativeButton(getString(R.string.Cancel).toString(), DialogInterface.OnClickListener {
                     dialog, id -> dialog.cancel()
             })
+            .setNeutralButton("Neutral"){ _, _ ->
+                Toast.makeText(this, "Clicking neutral button", Toast.LENGTH_LONG).show()
+            }
 
         // create dialog box
         val alert = dialogBuilder.create()
         // set title for alert dialog box
-        alert.setTitle("Displaying Dialog")
+        alert.setTitle(getString(R.string.TitleDialogQuestion).toString())
         // show alert dialog
         alert.show()
+    }
+
+    fun DisplayCustomeDialog() {
+        val inflater: LayoutInflater =
+            this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val dialogBinding = inflater.inflate(R.layout.custom_dialog, null, false)
+
+        val dialogBuilder = AlertDialog.Builder(this, 0).create()
+
+        dialogBuilder.apply {
+            setView(dialogBinding)
+            setCancelable(false)
+        }.show()
+
+        var btnOk: Button = dialogBinding.findViewById(R.id.btnOk_CustomDialog)
+
+        btnOk.setOnClickListener(View.OnClickListener { view ->
+            dialogBuilder.dismiss()
+        })
     }
 }

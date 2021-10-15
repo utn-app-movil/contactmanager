@@ -17,4 +17,9 @@
     <string name="mnu_contact_list_custom">View Contact List Custom</string>
     <string name="mnuRecycleView">Recycler View List</string>
     <string name="DisplayDialog">Display Dialog</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Ok">Ok</string>
+    <string name="QuestionCloseApp">Do you want to close this application?</string>
+    <string name="TitleDialogQuestion">Question</string>
+    <string name="CustomDialog">Custom Dialog</string>
 </resources>
