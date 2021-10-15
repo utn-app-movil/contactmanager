@@ -7,6 +7,5 @@
 1. Recycler View
 2. Dialog. 
 3. Custom Dialog
-4. Themes
-5. Camera and Gallery.
+
 
