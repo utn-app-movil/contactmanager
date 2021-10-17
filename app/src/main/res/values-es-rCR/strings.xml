@@ -23,4 +23,5 @@
     <string name="QuestionCloseApp">Desea salir de la aplicación</string>
     <string name="TitleDialogQuestion">Pregunta</string>
     <string name="CustomDialog">Dialog personalizado</string>
+    <string name="ConfirmDelete">Desea eliminar la información?</string>
 </resources>

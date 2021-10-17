@@ -11,13 +11,16 @@ class ContactModel {
             contactList.add(contact)
         }
 
-        fun removeContact(id: String){
-            try {
-                var result = contactList.filter { it.Id.equals(id) }
-                if (!result.any())
-                    throw Exception(Resources.getSystem().getString(R.string.msgInvalidContact))
+        fun updateContact(olId:String, contact: Contact){
+            val delContact = getContact(olId)
+            contactList.remove(delContact)
+            contactList.add(contact)
+        }
 
-                contactList.remove(result[0])
+        fun deleteContact(id: String){
+            try {
+                val delContact = getContact(id)
+                contactList.remove(delContact)
             }catch (e: Exception){
                 throw e
             }
