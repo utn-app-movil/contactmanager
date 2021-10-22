@@ -24,4 +24,6 @@
     <string name="TitleDialogQuestion">Pregunta</string>
     <string name="CustomDialog">Dialog personalizado</string>
     <string name="ConfirmDelete">Desea eliminar la información?</string>
+    <string name="TakePicture">Tomar una foto</string>
+    <string name="SelectPhoto">Seleccionar foto</string>
 </resources>

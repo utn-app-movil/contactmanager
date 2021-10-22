@@ -1,5 +1,7 @@
 package cr.ac.utn.appmovil.identities
 
+import android.graphics.Bitmap
+
 class Contact {
     private var _id: String =""
     private var _name: String =""
@@ -7,10 +9,11 @@ class Contact {
     private var _phone: Int = 0
     private var _email: String=""
     private var _address: String=""
+    private lateinit var _photo: Bitmap
 
     constructor()
 
-    constructor(id: String, name: String, lastName: String, phone: Int, email: String, address: String){
+    constructor(id: String, name: String, lastName: String, phone: Int, email: String, address: String, photo: Bitmap){
         this._id= id
         this._name= name
         this._lastName = lastName
@@ -44,4 +47,8 @@ class Contact {
     var Address: String
         get() = this._address
         set(value) {this._address = value}
+
+    var Photo: Bitmap
+        get() = this._photo
+        set(value) {this._photo = value}
 }
