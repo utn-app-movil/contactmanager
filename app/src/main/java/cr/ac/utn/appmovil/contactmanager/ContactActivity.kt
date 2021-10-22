@@ -2,6 +2,7 @@ package cr.ac.utn.appmovil.contactmanager
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
@@ -27,6 +28,7 @@ import java.io.File
 import java.lang.Exception
 
 private const val FILE_NAME = "photo.jpg"
+private const val PROVIDER = "cr.ac.utn.appmovil.contactmanager.fileprovider"
 
 class ContactActivity : AppCompatActivity() {
 
@@ -61,7 +63,6 @@ class ContactActivity : AppCompatActivity() {
         val btnTakePhoto: Button = findViewById<Button>(R.id.btnTakePicture)
         btnTakePhoto.setOnClickListener(View.OnClickListener { view ->
             TakePhoto()
-            //capturePhoto()
         })
 
         val btnSelectPhoto: Button = findViewById<Button>(R.id.btnSelectPhoto)
@@ -103,7 +104,7 @@ class ContactActivity : AppCompatActivity() {
             contact.Phone = txtPhone.text.toString()?.toInt()
             contact.Email = txtEmail.text.toString()
             contact.Address = txtAddress.text.toString()
-            contact.Photo = (imgPhoto.drawable as BitmapDrawable).bitmap
+            contact.Photo = (imgPhoto?.drawable as BitmapDrawable).bitmap
 
             if (dataValidation(contact)){
                 if (!isEdit)
@@ -153,6 +154,8 @@ class ContactActivity : AppCompatActivity() {
             txtPhone.setText(contact.Phone.toString())
             txtEmail.setText(contact.Email)
             txtAddress.setText(contact.Address)
+            imgPhoto.setImageBitmap(contact.Photo)
+
             return true
         }catch (e: Exception){
             Toast.makeText(this, e.message.toString(),Toast.LENGTH_LONG).show()
@@ -188,23 +191,10 @@ class ContactActivity : AppCompatActivity() {
         startActivityForResult(intent, takePicture)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        if (resultCode == RESULT_OK && requestCode == takePicture){
-            imageUri = data?.data
-            imgPhoto.setImageURI(imageUri)
-        }
-        else if (resultCode == RESULT_OK && requestCode == selectImage){
-            val takenPhoto = BitmapFactory.decodeFile(filePhoto.absolutePath)
-            imgPhoto.setImageBitmap(takenPhoto)
-        }else
-            super.onActivityResult(requestCode, resultCode, data)
-    }
-
     fun TakePhoto(){
         val takePhotoIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         filePhoto = getPhotoFile(FILE_NAME)
-        val providerFile = FileProvider.getUriForFile(this,"cr.ac.utn.appmovil.contactmanager.fileprovider", filePhoto)
+        val providerFile = FileProvider.getUriForFile(this,PROVIDER, filePhoto)
         takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, providerFile)
         startActivityForResult(takePhotoIntent, takePicture)
     }
@@ -214,21 +204,35 @@ class ContactActivity : AppCompatActivity() {
         return File.createTempFile(fileName, ".jpg", directoryStorage)
     }
 
-    private fun capturePhoto(){
-        val capturedImage = File(externalCacheDir, "My_Captured_Photo.jpg")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK && requestCode == takePicture){
+            //val imageBitmap = data?.extras?.get("data") as Bitmap
+            //imgPhoto.setImageBitmap(imageBitmap)
+            imageUri = data?.data
+            imgPhoto.setImageURI(imageUri)
+        }
+        else if (resultCode == RESULT_OK && requestCode == selectImage){
+            val takenPhoto = BitmapFactory.decodeFile(filePhoto.absolutePath)
+            imgPhoto.setImageBitmap(takenPhoto)
+        }
+    }
+
+    /*private fun capturePhoto2(){
+        val capturedImage = getPhotoFile(FILE_NAME) // File(externalCacheDir, FILE_NAME)
         if(capturedImage.exists()) {
             capturedImage.delete()
         }
         capturedImage.createNewFile()
-        imageUri = if(Build.VERSION.SDK_INT >= 24){
-            FileProvider.getUriForFile(this, "cr.ac.utn.appmovil.contactmanager.fileprovider",
-                capturedImage)
+        val provider = if(Build.VERSION.SDK_INT >= 24){
+            FileProvider.getUriForFile(this, PROVIDER,  capturedImage)
         } else {
             Uri.fromFile(capturedImage)
         }
 
-        val intent = Intent("android.media.action.IMAGE_CAPTURE")
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE) //("android.media.action.IMAGE_CAPTURE")
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, provider)
         startActivityForResult(intent, takePicture)
-    }
+    }*/
 }
