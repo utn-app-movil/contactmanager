@@ -40,8 +40,7 @@ class ContactActivity : AppCompatActivity() {
     var isEdit: Boolean = false
     var contactIdEdit: String=""
     private val takePicture = 100
-    private val selectImage = 101
-    private var imageUri: Uri? = null
+    private val selectImage = 101    
     lateinit var imgPhoto: ImageView
     lateinit var filePhoto: File
 
@@ -188,7 +187,7 @@ class ContactActivity : AppCompatActivity() {
     fun selectPhoto(){
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
         intent.type = "image/*"
-        startActivityForResult(intent, takePicture)
+        startActivityForResult(intent, selectImage)
     }
 
     fun TakePhoto(){
@@ -207,32 +206,14 @@ class ContactActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == RESULT_OK && requestCode == takePicture){
-            //val imageBitmap = data?.extras?.get("data") as Bitmap
-            //imgPhoto.setImageBitmap(imageBitmap)
-            imageUri = data?.data
+        if (resultCode == RESULT_OK && requestCode == selectImage){            
+            val imageUri = data?.data
             imgPhoto.setImageURI(imageUri)
         }
-        else if (resultCode == RESULT_OK && requestCode == selectImage){
+        else if (resultCode == RESULT_OK && requestCode == takePicture){
             val takenPhoto = BitmapFactory.decodeFile(filePhoto.absolutePath)
             imgPhoto.setImageBitmap(takenPhoto)
         }
     }
-
-    /*private fun capturePhoto2(){
-        val capturedImage = getPhotoFile(FILE_NAME) // File(externalCacheDir, FILE_NAME)
-        if(capturedImage.exists()) {
-            capturedImage.delete()
-        }
-        capturedImage.createNewFile()
-        val provider = if(Build.VERSION.SDK_INT >= 24){
-            FileProvider.getUriForFile(this, PROVIDER,  capturedImage)
-        } else {
-            Uri.fromFile(capturedImage)
-        }
-
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE) //("android.media.action.IMAGE_CAPTURE")
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, provider)
-        startActivityForResult(intent, takePicture)
-    }*/
+   
 }
