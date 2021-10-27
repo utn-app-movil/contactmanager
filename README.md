@@ -9,4 +9,11 @@
 3. Despliegue personalizada de información
 4. PutExtra
 5. Edición de información.
+6. Visible and enable menuItem 
+7. Complete the CRUD in Contacts
+8. Camera and Gallery.
+
+  
+
+
 

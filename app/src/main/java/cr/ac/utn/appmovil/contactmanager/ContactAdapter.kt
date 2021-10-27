@@ -33,6 +33,7 @@ class ContactAdapter(private val mCtx: Context, private val resource:Int, privat
         txtContactNameItem.text = contact.FullName
         txtAddressItem.text = contact.Address
         txtPhoneItem.text = contact.Phone.toString()
+        imgPhotoItem.setImageBitmap(contact.Photo)
 
         return rowView
 

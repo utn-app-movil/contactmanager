@@ -16,4 +16,14 @@
     <string name="msgInvalidContact">El contacto especificado no es correcto.</string>
     <string name="msgContactNoFound">El contacto no se encuentra registrado.</string>
     <string name="mnu_contact_list_custom">Ver Contactos personalizado</string>
+    <string name="mnuRecycleView">Lista con Recycler View</string>
+    <string name="DisplayDialog">Visualizar dialog</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="Ok">Aceptar</string>
+    <string name="QuestionCloseApp">Desea salir de la aplicación</string>
+    <string name="TitleDialogQuestion">Pregunta</string>
+    <string name="CustomDialog">Dialog personalizado</string>
+    <string name="ConfirmDelete">Desea eliminar la información?</string>
+    <string name="TakePicture">Tomar una foto</string>
+    <string name="SelectPhoto">Seleccionar foto</string>
 </resources>
