@@ -48,6 +48,11 @@ class MainActivity : AppCompatActivity() {
         btnViewMap.setOnClickListener(View.OnClickListener { view ->
             openActivity(MapsActivity::class.java)
         })
+
+        val btnCurrentLocation: Button = findViewById<Button>(R.id.btnCurrentLocationMap)
+        btnCurrentLocation.setOnClickListener(View.OnClickListener { view ->
+            openActivity(CurrentLocationMapsActivity::class.java)
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

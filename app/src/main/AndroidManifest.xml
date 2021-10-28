@@ -42,6 +42,15 @@
         </provider>
 
         <activity
+            android:name=".CurrentLocationMapsActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity
             android:name=".MapsActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity">
@@ -49,6 +58,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
         <activity
             android:name=".RecyclerViewActivity"
             android:exported="true"
