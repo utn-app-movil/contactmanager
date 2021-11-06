@@ -37,11 +37,11 @@ class ContactActivity : AppCompatActivity() {
     lateinit var txtPhone: EditText
     lateinit var txtEmail: EditText
     lateinit var txtAddress: EditText
+    lateinit var imgPhoto: ImageView
     var isEdit: Boolean = false
     var contactIdEdit: String=""
     private val takePicture = 100
-    private val selectImage = 101    
-    lateinit var imgPhoto: ImageView
+    private val selectImage = 101
     lateinit var filePhoto: File
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,11 +53,10 @@ class ContactActivity : AppCompatActivity() {
         txtPhone = findViewById<EditText>(R.id.txtContactPhone)
         txtEmail = findViewById<EditText>(R.id.txtContactEmail)
         txtAddress = findViewById<EditText>(R.id.txtContactAddress)
+        imgPhoto = findViewById(R.id.imgPhoto_Contact)
 
         val contactId = intent.getStringExtra(EXTRA_MESSAGE_CONTACTID)
         if (contactId != null && contactId != "") isEdit = loadEditContact(contactId.toString())
-
-        imgPhoto = findViewById(R.id.imgPhoto_Contact)
 
         val btnTakePhoto: Button = findViewById<Button>(R.id.btnTakePicture)
         btnTakePhoto.setOnClickListener(View.OnClickListener { view ->
