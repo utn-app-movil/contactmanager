@@ -1,6 +1,7 @@
 package cr.ac.utn.appmovil.contactmanager
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,8 @@ class ContactAdapter(private val mCtx: Context, private val resource:Int, privat
         txtContactNameItem.text = contact.FullName
         txtAddressItem.text = contact.Address
         txtPhoneItem.text = contact.Phone.toString()
-        imgPhotoItem.setImageBitmap(contact.Photo)
+        val photo= BitmapFactory.decodeByteArray(contact.Photo, 0, contact.Photo!!.size);
+        imgPhotoItem.setImageBitmap(photo)
 
         return rowView
 

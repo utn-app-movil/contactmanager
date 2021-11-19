@@ -28,4 +28,5 @@
     <string name="SelectPhoto">Seleccionar foto</string>
     <string name="CurrentLocationMap">Ubicación actual</string>
     <string name="GoogleMap">Google Map</string>
+    <string name="contactId">Id</string>
 </resources>

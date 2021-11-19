@@ -23,7 +23,8 @@ class RecyclerViewActivity : AppCompatActivity(), OnItemClickListener {
         setContentView(R.layout.activity_recycler_view)
 
         val recycler =  findViewById<RecyclerView>(R.id.rcvContactList)
-        customAdapter = RecyclerCustomAdapter(ContactModel.getContacts(), this)
+        val contactModel = ContactModel(this)
+        customAdapter = RecyclerCustomAdapter(contactModel.getContacts(), this)
         val layoutManager = LinearLayoutManager(applicationContext)
         recycler.layoutManager = layoutManager
         recycler.adapter = customAdapter
@@ -31,7 +32,7 @@ class RecyclerViewActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     override fun onItemClicked(contact: Contact) {
-        util.openActivity(this, ContactActivity::class.java, EXTRA_MESSAGE_CONTACTID, contact.FullName)
+        util.openActivity(this, ContactActivity::class.java, EXTRA_MESSAGE_CONTACTID, contact.Id)
         //Toast.makeText(this,"contact name ${contact.FullName} \n Phone:${contact.Phone.toString()}",Toast.LENGTH_LONG)
           //  .show()
         //Log.i("CONTACT", contact.FullName)

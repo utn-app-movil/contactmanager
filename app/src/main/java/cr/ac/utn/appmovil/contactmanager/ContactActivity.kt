@@ -24,6 +24,7 @@ import cr.ac.utn.appmovil.model.ContactModel
 import cr.ac.utn.appmovil.util.EXTRA_MESSAGE_CONTACTID
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
+import cr.ac.utn.appmovil.util.util.Companion.getBitmapAsByteArray
 import java.io.File
 import java.lang.Exception
 
@@ -32,6 +33,7 @@ private const val PROVIDER = "cr.ac.utn.appmovil.contactmanager.fileprovider"
 
 class ContactActivity : AppCompatActivity() {
 
+    lateinit var txtId: EditText
     lateinit var txtName: EditText
     lateinit var txtLastName: EditText
     lateinit var txtPhone: EditText
@@ -43,11 +45,15 @@ class ContactActivity : AppCompatActivity() {
     private val takePicture = 100
     private val selectImage = 101
     lateinit var filePhoto: File
+    private lateinit var contactModel: ContactModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact)
 
+        contactModel = ContactModel(this)
+
+        txtId = findViewById<EditText>(R.id.txtContactId)
         txtName = findViewById<EditText>(R.id.txtContactName)
         txtLastName = findViewById<EditText>(R.id.txtContactLastName)
         txtPhone = findViewById<EditText>(R.id.txtContactPhone)
@@ -88,6 +94,7 @@ class ContactActivity : AppCompatActivity() {
             }
             R.id.mnuDelete -> {
                 deleteContact()
+                cleanScreen()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -97,18 +104,19 @@ class ContactActivity : AppCompatActivity() {
     fun saveContact(){
         try {
             val contact = Contact()
+            contact.Id = txtId.text.toString()
             contact.Name = txtName.text.toString()
             contact.LastName = txtLastName.text.toString()
             contact.Phone = txtPhone.text.toString()?.toInt()
             contact.Email = txtEmail.text.toString()
             contact.Address = txtAddress.text.toString()
-            contact.Photo = (imgPhoto?.drawable as BitmapDrawable).bitmap
+            contact.Photo = getBitmapAsByteArray((imgPhoto?.drawable as BitmapDrawable).bitmap)
 
             if (dataValidation(contact)){
                 if (!isEdit)
-                    ContactModel.addContact(contact)
+                    contactModel.addContact(contact)
                 else
-                    ContactModel.updateContact(contactIdEdit, contact)
+                    contactModel.updateContact(contactIdEdit, contact)
 
                 cleanScreen()
                 Toast.makeText(this, getString(R.string.msgSave).toString(),Toast.LENGTH_LONG).show()
@@ -121,12 +129,12 @@ class ContactActivity : AppCompatActivity() {
     }
 
     fun deleteContact(){
-        //if (dataValidation()){
-
+        try {
+            contactModel.deleteContact(txtId.text.toString().trim())
             Toast.makeText(this, getString(R.string.msgDelete).toString(),Toast.LENGTH_LONG).show()
-        //}else{
-          //  Toast.makeText(this, getString(R.string.msgInvalidData).toString(),Toast.LENGTH_LONG).show()
-        //}
+        }catch (e: Exception){
+            Toast.makeText(this, e.message.toString(),Toast.LENGTH_LONG).show()
+        }
     }
 
     fun dataValidation(contact: Contact): Boolean{
@@ -136,6 +144,8 @@ class ContactActivity : AppCompatActivity() {
     fun cleanScreen(){
         contactIdEdit = ""
         isEdit=false
+        txtId.isEnabled= true
+        txtId.setText("")
         txtName.setText("")
         txtLastName.setText("")
         txtPhone.setText("")
@@ -145,14 +155,17 @@ class ContactActivity : AppCompatActivity() {
 
     fun loadEditContact(id: String): Boolean{
         try{
-            val contact = ContactModel.getContact(id)
-            contactIdEdit= contact.FullName.trim()
+            val contact = contactModel.getContact(id)
+            contactIdEdit= contact.Id.trim()
+            txtId.setText(contact.Id)
+            txtId.isEnabled= false
             txtName.setText(contact.Name)
             txtLastName.setText(contact.LastName)
             txtPhone.setText(contact.Phone.toString())
             txtEmail.setText(contact.Email)
             txtAddress.setText(contact.Address)
-            imgPhoto.setImageBitmap(contact.Photo)
+           val photo= BitmapFactory.decodeByteArray(contact.Photo, 0, contact.Photo!!.size)
+            imgPhoto.setImageBitmap(photo)
 
             return true
         }catch (e: Exception){
@@ -169,7 +182,7 @@ class ContactActivity : AppCompatActivity() {
             .setPositiveButton(getString(R.string.Ok), DialogInterface.OnClickListener {
                     dialog, id ->
 
-                ContactModel.deleteContact(contactIdEdit)
+                contactModel.deleteContact(contactIdEdit)
                 cleanScreen()
                 Toast.makeText(this, getString(R.string.msgDelete).toString(), Toast.LENGTH_LONG).show()
 

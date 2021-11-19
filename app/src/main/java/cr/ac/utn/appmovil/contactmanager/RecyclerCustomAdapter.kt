@@ -1,5 +1,6 @@
 package cr.ac.utn.appmovil.contactmanager
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,8 @@ class CustomViewHolder (view: View): RecyclerView.ViewHolder(view){
         txtFullName.text = item.FullName
         txtAddress.text = item.Address
         txtPhone.text = item.Phone.toString()
-        imgPhoto.setImageBitmap(item.Photo)
+        val photo= BitmapFactory.decodeByteArray(item.Photo, 0, item.Photo!!.size);
+        imgPhoto.setImageBitmap(photo)
 
         itemView.setOnClickListener{
             clickListener.onItemClicked(item)
