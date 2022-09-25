@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ContactManager</string>
+    <string name="showMessage">Show Message</string>
+    <string name="mainMessage">Main Message</string>
+</resources>

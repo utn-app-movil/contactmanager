@@ -6,27 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/main_btnAddContact"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
-        android:onClick="addContactButon"
-        android:text="@string/mnu_add_contact"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toTopOf="@+id/btnShowMessage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/main_btnContactList"
+        android:id="@+id/btnShowMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mnu_contact_list"
+        android:layout_marginBottom="496dp"
+        android:text="@string/showMessage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_btnAddContact"
-        app:layout_constraintVertical_bias="0.131" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
