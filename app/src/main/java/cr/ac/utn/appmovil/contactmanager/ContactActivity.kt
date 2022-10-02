@@ -19,11 +19,13 @@ class ContactActivity : AppCompatActivity() {
     lateinit var txtPhone: EditText
     lateinit var txtEmail: EditText
     lateinit var txtAddress: EditText
+    lateinit var contactModel: ContactModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact)
 
+        contactModel= ContactModel()
         txtName = findViewById<EditText>(R.id.txtContactName)
         txtLastName = findViewById<EditText>(R.id.txtContactLastName)
         txtPhone = findViewById<EditText>(R.id.txtContactPhone)
@@ -64,7 +66,7 @@ class ContactActivity : AppCompatActivity() {
             contact.Address = txtAddress.text.toString()
 
             if (dataValidation(contact)){
-                ContactModel.addContact(contact)
+                contactModel.addContact(contact)
                 cleanScreen()
                 Toast.makeText(this, getString(R.string.msgSave).toString(),Toast.LENGTH_LONG).show()
             }else{
@@ -98,7 +100,7 @@ class ContactActivity : AppCompatActivity() {
 
     fun loadEditContact(id: String){
         try{
-            val contact = ContactModel.getContact(id)
+            val contact = contactModel.getContact(id)
             txtName.setText(contact.Name)
             txtLastName.setText(contact.LastName)
             txtPhone.setText(contact.Phone.toString())

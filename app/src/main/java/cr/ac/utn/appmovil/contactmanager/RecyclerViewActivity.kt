@@ -13,8 +13,9 @@ class RecyclerViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_view)
 
+        val contactModel= ContactModel()
         val recycler =  findViewById<RecyclerView>(R.id.rcvContactList)
-        customAdapter = RecyclerCustomAdapter(ContactModel.getContacts())
+        customAdapter = RecyclerCustomAdapter(contactModel.getContacts())
         val layoutManager = LinearLayoutManager(applicationContext)
         recycler.layoutManager = layoutManager
         recycler.adapter = customAdapter

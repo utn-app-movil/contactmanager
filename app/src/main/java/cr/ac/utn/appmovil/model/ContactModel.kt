@@ -1,47 +1,39 @@
 package cr.ac.utn.appmovil.model
 import android.content.res.Resources
 import cr.ac.utn.appmovil.contactmanager.R
+import cr.ac.utn.appmovil.data.MemoryManager
 import cr.ac.utn.appmovil.identities.Contact
+import cr.ac.utn.appmovil.interfaces.IDBManager
 
 class ContactModel {
-    companion object  {
-        private var contactList = mutableListOf<Contact>()
+    private var dbManager: IDBManager = MemoryManager
 
-        fun addContact(contact: Contact){
-            contactList.add(contact)
+    fun addContact(contact: Contact){
+        dbManager.add(contact)
+    }
+
+    fun removeContact(id: String){
+        val result = dbManager.getByid(id)
+        if (result == null)
+            throw Exception(Resources.getSystem().getString(R.string.msgInvalidContact))
+
+        dbManager.remove(result)
+    }
+
+    fun getContacts()= dbManager.getAll()
+
+    fun getContact(id: String): Contact{
+        var result = dbManager.getByid(id)
+        if (result == null){
+            val system  = Resources.getSystem()
+            throw Exception(system.getString(R.string.msgContactNoFound).toString())
         }
+        return result
+    }
 
-        fun removeContact(id: String){
-            try {
-                var result = contactList.filter { it.Id.equals(id) }
-                if (!result.any())
-                    throw Exception(Resources.getSystem().getString(R.string.msgInvalidContact))
-
-                contactList.remove(result[0])
-            }catch (e: Exception){
-                throw e
-            }
-        }
-
-        fun getContacts()= contactList.toList()
-
-        fun getContact(id: String): Contact{
-            try {
-                var result = contactList.filter { (it.FullName).equals(id) }
-                if (!result.any()){
-                    val system  = Resources.getSystem()
-                    throw Exception(system.getString(R.string.msgContactNoFound).toString())
-                }
-                return result[0]
-            }catch (e: Exception){
-                throw e
-            }
-        }
-
-        fun getContactNames(): List<String> {
-            val names = mutableListOf<String>()
-            contactList.forEach{i-> names.add(i.FullName)}
-            return names.toList()
-        }
+    fun getContactNames(): List<String> {
+        val names = mutableListOf<String>()
+        dbManager.getAll().forEach{ i-> names.add(i.FullName)}
+        return names.toList()
     }
 }

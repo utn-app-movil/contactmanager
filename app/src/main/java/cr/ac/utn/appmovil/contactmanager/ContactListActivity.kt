@@ -16,8 +16,9 @@ class ContactListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_list)
 
+        val contactModel = ContactModel()
         val lstContactList = findViewById<ListView>(R.id.lstContactList)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, ContactModel.getContactNames())
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, contactModel.getContactNames())
         lstContactList.adapter = adapter
 
         lstContactList.onItemClickListener = object : AdapterView.OnItemClickListener{
