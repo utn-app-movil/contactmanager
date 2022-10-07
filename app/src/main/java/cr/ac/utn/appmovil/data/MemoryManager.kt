@@ -13,6 +13,8 @@ object MemoryManager: IDBManager {
         contactList.add(contact)
     }
     override fun update (contact: Contact){
+        remove(contact.Id)
+        contactList.add(contact)
 
     }
     override fun remove (id: String){
@@ -20,7 +22,7 @@ object MemoryManager: IDBManager {
         contactList.filter { filterContact.test(it.Id) }.forEach{ contactList.remove(it) }
     }
 
-    override fun remove (contact: Contact){
+    fun remove (contact: Contact){
         contactList.remove(contact)
     }
 

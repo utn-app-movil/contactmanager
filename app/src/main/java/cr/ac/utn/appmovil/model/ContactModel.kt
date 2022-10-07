@@ -12,12 +12,16 @@ class ContactModel {
         dbManager.add(contact)
     }
 
+    fun updateContact(contact: Contact){
+        dbManager.update(contact)
+    }
+
     fun removeContact(id: String){
-        val result = dbManager.getByid(id)
+        var result = dbManager.getByid(id)
         if (result == null)
             throw Exception(Resources.getSystem().getString(R.string.msgInvalidContact))
 
-        dbManager.remove(result)
+        dbManager.remove(id)
     }
 
     fun getContacts()= dbManager.getAll()
