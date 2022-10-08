@@ -18,8 +18,9 @@ object MemoryManager: IDBManager {
 
     }
     override fun remove (id: String){
-        var filterContact = Predicate {contactId: String -> contactId.trim().equals(id.trim())}
-        contactList.filter { filterContact.test(it.Id) }.forEach{ contactList.remove(it) }
+        //var filterContact = Predicate {contactId: String -> contactId.trim().equals(id.trim())}
+        //contactList.filter { filterContact.test(it.Id) }.forEach{ contactList.remove(it) }
+        contactList.removeIf { it.Id.trim().equals(id.trim()) }
     }
 
     fun remove (contact: Contact){

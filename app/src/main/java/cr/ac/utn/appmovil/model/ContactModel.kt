@@ -1,4 +1,5 @@
 package cr.ac.utn.appmovil.model
+import android.content.Context
 import android.content.res.Resources
 import cr.ac.utn.appmovil.contactmanager.R
 import cr.ac.utn.appmovil.data.MemoryManager
@@ -7,6 +8,11 @@ import cr.ac.utn.appmovil.interfaces.IDBManager
 
 class ContactModel {
     private var dbManager: IDBManager = MemoryManager
+    private lateinit var _context: Context
+
+    constructor(context: Context){
+        _context= context
+    }
 
     fun addContact(contact: Contact){
         dbManager.add(contact)
@@ -19,7 +25,7 @@ class ContactModel {
     fun removeContact(id: String){
         var result = dbManager.getByid(id)
         if (result == null)
-            throw Exception(Resources.getSystem().getString(R.string.msgInvalidContact))
+            throw Exception(_context.getString(R.string.msgInvalidContact).toString())
 
         dbManager.remove(id)
     }
@@ -29,8 +35,8 @@ class ContactModel {
     fun getContact(id: String): Contact{
         var result = dbManager.getByid(id)
         if (result == null){
-            val system  = Resources.getSystem()
-            throw Exception(system.getString(R.string.msgContactNoFound).toString())
+            val message = _context.getString(R.string.msgContactNoFound).toString()
+            throw Exception(message)
         }
         return result
     }

@@ -125,6 +125,18 @@
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/btnSaveContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Show Contact" />
         </TableRow>
 
     </TableLayout>

@@ -19,7 +19,7 @@ class ContactListCustomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_list_custom)
 
-        contactModel= ContactModel()
+        contactModel= ContactModel(this)
         lstContactList = findViewById<ListView>(R.id.lstContactListCustom)
         val contactArray = ArrayList<Contact>(contactModel.getContacts())
         val adapter = ContactAdapter(this, R.layout.list_item_contact, contactModel.getContacts()) // ContactAdapter(this, ArrayList<Contact>(ContactModel.getContacts()))

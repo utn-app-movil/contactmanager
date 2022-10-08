@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import cr.ac.utn.appmovil.identities.Contact
@@ -25,12 +27,29 @@ class ContactActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact)
 
-        contactModel= ContactModel()
+        contactModel= ContactModel(this)
         txtName = findViewById<EditText>(R.id.txtContactName)
         txtLastName = findViewById<EditText>(R.id.txtContactLastName)
         txtPhone = findViewById<EditText>(R.id.txtContactPhone)
         txtEmail = findViewById<EditText>(R.id.txtContactEmail)
         txtAddress = findViewById<EditText>(R.id.txtContactAddress)
+
+        /*-------------TEMPORAL- DESPUES HAY QUE BORRARLO--------------------------*/
+        addContact()
+
+        val btnSaveContact: Button = findViewById<Button>(R.id.btnSaveContact)
+        btnSaveContact.setOnClickListener(View.OnClickListener { view ->
+            val contactM= ContactModel(this)
+            try{
+                var contact = contactM.getContact("A100")
+                Toast.makeText(this, contact.FullName, Toast.LENGTH_LONG).show()
+
+            }catch (e: Exception){
+                Toast.makeText(this, e.message.toString(), Toast.LENGTH_LONG).show()
+            }
+        })
+        //--------------------------------------------
+
 
         val contactId = intent.getStringExtra(EXTRA_MESSAGE_CONTACTID)
         if (contactId != null && contactId != "") loadEditContact(contactId.toString())
@@ -111,5 +130,12 @@ class ContactActivity : AppCompatActivity() {
         }
         //val btnDelete = findViewById<MenuItem>(R.id.mnuDelete)
         //btnDelete.setVisible(false)
+    }
+
+
+    fun addContact(){
+        val contactM= ContactModel(this)
+        var contact = Contact("A100", "Ever", "Barahona", 12354, "ebarahona@utn.ac.cr", "Puntarenas", "Costa Rica")
+        contactM.addContact(contact)
     }
 }

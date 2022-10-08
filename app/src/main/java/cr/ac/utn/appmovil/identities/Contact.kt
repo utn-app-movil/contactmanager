@@ -7,16 +7,18 @@ class Contact {
     private var _phone: Int = 0
     private var _email: String=""
     private var _address: String=""
+    private var _country: String=""
 
     constructor()
 
-    constructor(id: String, name: String, lastName: String, phone: Int, email: String, address: String){
+    constructor(id: String, name: String, lastName: String, phone: Int, email: String, address: String, country: String){
         this._id= id
         this._name= name
         this._lastName = lastName
         this._phone=phone
         this._email=email
         this._address= address
+        this._country=country
     }
 
     var Id: String
@@ -44,4 +46,8 @@ class Contact {
     var Address: String
         get() = this._address
         set(value) {this._address = value}
+
+    var Country: String
+        get() = this._country
+        set(value) {this._country = value}
 }
