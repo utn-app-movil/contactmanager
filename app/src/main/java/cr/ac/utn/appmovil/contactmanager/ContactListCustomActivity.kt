@@ -27,7 +27,6 @@ class ContactListCustomActivity : AppCompatActivity() {
             override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val contacts = ContactModel.getContacts()
                 val name = contacts[position].FullName
-                //Toast.makeText(applicationContext, itemValue, Toast.LENGTH_LONG).show()
                 util.openActivity(applicationContext, ContactActivity::class.java, EXTRA_MESSAGE_CONTACTID, name)
             }
         }

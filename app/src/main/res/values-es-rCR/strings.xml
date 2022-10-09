@@ -26,4 +26,18 @@
     <string name="ConfirmDelete">Desea eliminar la información?</string>
     <string name="TakePicture">Tomar una foto</string>
     <string name="SelectPhoto">Seleccionar foto</string>
+    <string-array name="Countries">
+        <item>Costa Rica</item>
+        <item>Estados Unidos</item>
+        <item>Japón</item>
+        <item>México</item>
+        <item>España</item>
+        <item>India</item>
+        <item>Argentina</item>
+        <item>Brasil</item>
+        <item>Italia</item>
+        <item>Honduras</item>
+    </string-array>
+    <string name="contactCountry">País</string>
+    <string name="promptSelectCountry">Seleccione un país</string>
 </resources>

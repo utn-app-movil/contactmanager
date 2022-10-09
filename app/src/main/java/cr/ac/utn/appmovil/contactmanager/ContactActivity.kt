@@ -15,10 +15,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import cr.ac.utn.appmovil.identities.Contact
 import cr.ac.utn.appmovil.model.ContactModel
 import cr.ac.utn.appmovil.util.EXTRA_MESSAGE_CONTACTID
@@ -43,6 +40,8 @@ class ContactActivity : AppCompatActivity() {
     private val selectImage = 101    
     lateinit var imgPhoto: ImageView
     lateinit var filePhoto: File
+    lateinit var spCountries: Spinner
+    lateinit var countries: List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,11 +52,20 @@ class ContactActivity : AppCompatActivity() {
         txtPhone = findViewById<EditText>(R.id.txtContactPhone)
         txtEmail = findViewById<EditText>(R.id.txtContactEmail)
         txtAddress = findViewById<EditText>(R.id.txtContactAddress)
-
-        val contactId = intent.getStringExtra(EXTRA_MESSAGE_CONTACTID)
-        if (contactId != null && contactId != "") isEdit = loadEditContact(contactId.toString())
-
         imgPhoto = findViewById(R.id.imgPhoto_Contact)
+        spCountries = findViewById<Spinner>(R.id.spCountries_contact)
+
+        loadCountries()
+
+        spCountries.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                Toast.makeText(this@ContactActivity, countries[position].toString(), Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
+            }
+        }
 
         val btnTakePhoto: Button = findViewById<Button>(R.id.btnTakePicture)
         btnTakePhoto.setOnClickListener(View.OnClickListener { view ->
@@ -68,6 +76,9 @@ class ContactActivity : AppCompatActivity() {
         btnSelectPhoto.setOnClickListener(View.OnClickListener { view ->
            selectPhoto()
         })
+
+        val contactId = intent.getStringExtra(EXTRA_MESSAGE_CONTACTID)
+        if (contactId != null && contactId != "") isEdit = loadEditContact(contactId.toString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -104,6 +115,7 @@ class ContactActivity : AppCompatActivity() {
             contact.Email = txtEmail.text.toString()
             contact.Address = txtAddress.text.toString()
             contact.Photo = (imgPhoto?.drawable as BitmapDrawable).bitmap
+            contact.Country = spCountries.selectedItem.toString()
 
             if (dataValidation(contact)){
                 if (!isEdit)
@@ -153,6 +165,7 @@ class ContactActivity : AppCompatActivity() {
             txtPhone.setText(contact.Phone.toString())
             txtEmail.setText(contact.Email)
             txtAddress.setText(contact.Address)
+            spCountries.setSelection(countries.indexOf(contact.Country.trim()))
             imgPhoto.setImageBitmap(contact.Photo)
 
             return true
@@ -215,5 +228,13 @@ class ContactActivity : AppCompatActivity() {
             imgPhoto.setImageBitmap(takenPhoto)
         }
     }
-   
+    fun loadCountries(){
+        countries = resources.getStringArray(R.array.Countries).toList()
+        if (spCountries != null) {
+            //val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, countries)
+            val adapter = ArrayAdapter.createFromResource(this, R.array.Countries, android.R.layout.simple_spinner_item)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spCountries.adapter = adapter
+        }
+    }
 }
