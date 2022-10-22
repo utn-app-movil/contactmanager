@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ContactManager</string>
+    <string name="showMessage">Show Message</string>
+    <string name="mainMessage">Main Message</string>
+    <string name="showContact">Open Contact</string>
+    <string name="contactList">Contact List</string>
+    <string name="msgNotFoundContact">The contact does not exist.</string>
+    <string name="hintAllowsString">It allows a string value</string>
+    <string name="ContactId">Id</string>
+    <string name="ContactName">Name</string>
+    <string name="ContactLastName">Last Name</string>
+    <string name="ContactPhone">Phone</string>
+    <string name="ContactEmail">Email</string>
+    <string name="ContactAddress">Address</string>
+    <string name="ContactCountry">Country</string>
+    <string name="Save">Save</string>
+    <string name="Delete">Borrar</string>
+    <string name="Cancel">Cancelar</string>
+
+    <string-array name="Countries">
+        <item>Costa Rica</item>
+        <item>United State</item>
+        <item>Japan</item>
+        <item>Mexico</item>
+        <item>Spain</item>
+        <item>India</item>
+        <item>Argentina</item>
+        <item>Brazil</item>
+        <item>Italy</item>
+        <item>Honduras</item>
+    </string-array>
+    <string name="MissingContactData">Contact information is not complete</string>
+    <string name="SaveSuccess">The information was saved successfully.</string>
+    <string name="DeleteSuccess">The information was deleted successfully.</string>
+</resources>

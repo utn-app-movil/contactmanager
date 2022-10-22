@@ -1,4 +1,4 @@
-package cr.ac.utn.appmovil.contactmanager
+package cr.ac.utn.contactmanager
 
 import org.junit.Test
 

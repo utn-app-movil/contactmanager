@@ -1,25 +1,35 @@
 <resources>
-    <string name="app_name">Contact Manager</string>
-    <string name="mnu_add_contact">Add Contact</string>
-    <string name="mnu_contact_list">View All Contacts</string>
-    <string name="contactName">Name</string>
-    <string name="contactLastName">Last Name</string>
-    <string name="contactPhone">Phone</string>
-    <string name="contactEmail">Email</string>
-    <string name="contactAddress">Address</string>
-    <string name="save">save</string>
-    <string name="msgSave">The information has been saved.</string>
-    <string name="msgDelete">The information has been deleted.</string>
-    <string name="delete">Delete</string>
-    <string name="msgInvalidData">Missing or invalid information. Please check.</string>
-    <string name="msgInvalidContact">The contact is not correct.</string>
-    <string name="msgContactNoFound">The contact is not found.</string>
-    <string name="mnu_contact_list_custom">View Contact List Custom</string>
-    <string name="mnuRecycleView">Recycler View List</string>
-    <string name="DisplayDialog">Display Dialog</string>
-    <string name="Cancel">Cancel</string>
-    <string name="Ok">Ok</string>
-    <string name="QuestionCloseApp">Do you want to close this application?</string>
-    <string name="TitleDialogQuestion">Question</string>
-    <string name="CustomDialog">Custom Dialog</string>
+    <string name="app_name">ContactManager</string>
+    <string name="showMessage">Mostrar Mensaje</string>
+    <string name="mainMessage">Mensaje de pantalla principal</string>
+    <string name="showContact">Abrir Contactos</string>
+    <string name="contactList">Lista de Contactos</string>
+    <string name="msgNotFoundContact">El contacto no existe.</string>
+    <string name="hintAllowsString">Valor alfanumérico</string>
+    <string name="ContactId">Código</string>
+    <string name="ContactName">Nombre</string>
+    <string name="ContactLastName">Apellidos</string>
+    <string name="ContactPhone">Teléfono</string>
+    <string name="ContactEmail">Correo electrónico</string>
+    <string name="ContactAddress">Dirección</string>
+    <string name="ContactCountry">País</string>
+    <string name="Save">Guardar</string>
+    <string name="Delete">Borrar</string>
+    <string name="Cancel">Cancelar</string>
+
+    <string-array name="Countries">
+        <item>Costa Rica</item>
+        <item>Estados Unidos</item>
+        <item>Japón</item>
+        <item>México</item>
+        <item>España</item>
+        <item>India</item>
+        <item>Argentina</item>
+        <item>Brasil</item>
+        <item>Italia</item>
+        <item>Honduras</item>
+    </string-array>
+    <string name="MissingContactData">La información del contacto está incompleta</string>
+    <string name="SaveSuccess">La información de guardó exitosamente.</string>
+    <string name="DeleteSuccess">La información se eliminó exitosamente.</string>
 </resources>

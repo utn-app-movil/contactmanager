@@ -8,13 +8,58 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="419dp"
-        android:layout_height="598dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="50dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/ContactId"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtId_Contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:width="250dp"
+                android:ems="10"
+                android:hint="@string/hintAllowsString"
+                android:inputType="textPersonName" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/ContactName"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/txtName_Contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:width="250dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                tools:ignore="TouchTargetSizeCheck" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
@@ -25,17 +70,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/contactName"
+                android:text="@string/ContactLastName"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/txtContactName"
-                android:layout_width="305dp"
+                android:id="@+id/txtLastName_Contact"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:width="250dp"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:minHeight="48dp" />
+                android:inputType="textPersonName" />
         </TableRow>
 
         <TableRow
@@ -47,17 +93,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/contactLastName"
+                android:text="@string/ContactPhone"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/txtContactLastName"
+                android:id="@+id/txtPhone_Contact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:width="250dp"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:minHeight="48dp" />
+                android:inputType="phone" />
         </TableRow>
 
         <TableRow
@@ -69,40 +116,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/contactPhone"
+                android:text="@string/ContactEmail"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/txtContactPhone"
+                android:id="@+id/txtEmail_Contact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:width="250dp"
                 android:ems="10"
-                android:inputType="phone" />
-
+                android:inputType="textEmailAddress" />
         </TableRow>
 
         <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/contactEmail"
+                android:text="@string/ContactAddress"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/txtContactEmail"
+                android:id="@+id/txtAddress_Contact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:width="250dp"
                 android:ems="10"
-                android:inputType="textEmailAddress" />
-
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
         </TableRow>
 
         <TableRow
@@ -114,31 +163,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/contactAddress"
+                android:text="@string/ContactCountry"
                 android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/txtContactAddress"
-                android:layout_width="311dp"
-                android:layout_height="64dp"
-                android:layout_marginStart="10dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <Button
-                android:id="@+id/btnSaveContact"
-                android:layout_width="wrap_content"
+            <Spinner
+                android:id="@+id/spCountry_Contact"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Show Contact" />
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:width="250dp"
+                android:spinnerMode="dropdown" />
         </TableRow>
-
     </TableLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
