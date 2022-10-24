@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.showContactList_mainmenu -> {
+                openActivity (ContactListActivity::class.java)
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -2,6 +2,7 @@ package cr.ac.utn.contactmanager
 
 import Entity.Contact
 import Model.ContactModel
+import Utilities.EXTRA_MESSAGE_CONTACTID
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -34,6 +35,9 @@ class ContactActivity : AppCompatActivity() {
         txtAddress = findViewById<EditText>(R.id.txtAddress_Contact)
 
         loadCountries()
+
+        val contactId = intent.getStringExtra(EXTRA_MESSAGE_CONTACTID)
+        if (contactId != null && contactId != "") isEdit = loadEditContact(contactId.toString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean{
@@ -131,5 +135,25 @@ class ContactActivity : AppCompatActivity() {
         }catch (ex: Exception){
             Toast.makeText(this, ex.message.toString(), Toast.LENGTH_LONG).show()
         }
+    }
+
+    fun loadEditContact(id: String): Boolean{
+        try{
+            val contactModel = ContactModel(this)
+            val contact = contactModel.getContact(id)
+            txtId.setText(contact.Id)
+            txtId.isEnabled=false
+            txtName.setText(contact.Name.trim())
+            txtLastName.setText(contact.LastName.trim())
+            txtPhone.setText(contact.Phone.toString())
+            txtEmail.setText(contact.Email.trim())
+            txtAddress.setText(contact.Address.trim())
+            val countries = resources.getStringArray(R.array.Countries).toList()
+            spCountry.setSelection(countries.indexOf(contact.Country))
+            return true
+        }catch (e:Exception){
+            Toast.makeText(this, e.message.toString(), Toast.LENGTH_LONG).show()
+        }
+        return false
     }
 }
