@@ -32,4 +32,10 @@
     <string name="MissingContactData">La información del contacto está incompleta</string>
     <string name="SaveSuccess">La información de guardó exitosamente.</string>
     <string name="DeleteSuccess">La información se eliminó exitosamente.</string>
+    <string name="ConfirmDelete">Desea eliminar la información?</string>
+    <string name="OK">Aceptar</string>
+    <string name="TitleDialogQuestion">Pregunta</string>
+    <string name="ConfirmUpdate">Desea actualizar la información?</string>
+    <string name="showCamera">Cámara</string>
+    <string name="showGallery">Galería</string>
 </resources>

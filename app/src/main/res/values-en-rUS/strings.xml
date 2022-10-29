@@ -33,4 +33,10 @@
     <string name="MissingContactData">Contact information is not complete</string>
     <string name="SaveSuccess">The information was saved successfully.</string>
     <string name="DeleteSuccess">The information was deleted successfully.</string>
+    <string name="ConfirmDelete">Do you want to delete the information?</string>
+    <string name="OK">OK</string>
+    <string name="TitleDialogQuestion">Question</string>
+    <string name="ConfirmUpdate">Do ypu want to update the information?</string>
+    <string name="showCamera">Camera</string>
+    <string name="showGallery">Gallery</string>
 </resources>

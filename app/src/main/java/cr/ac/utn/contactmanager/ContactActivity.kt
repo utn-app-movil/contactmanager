@@ -3,6 +3,7 @@ package cr.ac.utn.contactmanager
 import Entity.Contact
 import Model.ContactModel
 import Utilities.EXTRA_MESSAGE_CONTACTID
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -10,6 +11,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import java.lang.Exception
 
 class ContactActivity : AppCompatActivity() {
@@ -49,11 +51,14 @@ class ContactActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.mnuSave_Contact -> {
-                saveContact()
+                //if (!isEdit)
+                   saveContact()
+                //else
+                  //  confirmUpdate()
                 true
             }
             R.id.mnuDelete_Contact -> {
-                deleteContact()
+                confirmDelete()
                 true
             }
             R.id.mnuCancel_Contact -> {
@@ -62,6 +67,11 @@ class ContactActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        menu?.findItem(R.id.mnuDelete_Contact)?.setVisible(isEdit)
+        return true
     }
 
     fun loadCountries(){
@@ -97,13 +107,13 @@ class ContactActivity : AppCompatActivity() {
                 contact.Address = txtAddress.text.toString()
                 contact.Country = spCountry.selectedItem.toString()
 
-                if (!isEdit)
+                if (!isEdit) {
                     contactM.addContact(contact)
-                else
-                    contactM.updateContact(contact)
+                    cancel()
+                    Toast.makeText(this,getString(R.string.SaveSuccess).toString(),Toast.LENGTH_LONG).show()
+                }else
+                    confirmUpdate(contact)
 
-                cancel()
-                Toast.makeText(this, getString(R.string.SaveSuccess).toString(), Toast.LENGTH_LONG).show()
             }else{
                 Toast.makeText(this, getString(R.string.MissingContactData).toString(), Toast.LENGTH_LONG).show()
             }
@@ -155,5 +165,45 @@ class ContactActivity : AppCompatActivity() {
             Toast.makeText(this, e.message.toString(), Toast.LENGTH_LONG).show()
         }
         return false
+    }
+
+    fun confirmDelete(){
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setMessage(getString(R.string.ConfirmDelete).toString())
+            .setCancelable(false)
+            .setPositiveButton(getString(R.string.OK).toString()
+                    , DialogInterface.OnClickListener {
+                        dialog, id ->
+                        deleteContact()
+                })
+            .setNegativeButton(getString(R.string.Cancel).toString()
+                    , DialogInterface.OnClickListener {
+                        dialog, id -> dialog.cancel()
+                })
+        val alert = dialogBuilder.create()
+        alert.setTitle(getString(R.string.TitleDialogQuestion).toString())
+        alert.show()
+    }
+
+    fun confirmUpdate(contact: Contact){
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setMessage(getString(R.string.ConfirmUpdate).toString())
+            .setCancelable(false)
+            .setPositiveButton(getString(R.string.OK).toString()
+                , DialogInterface.OnClickListener {
+                        dialog, id ->
+                    //saveContact()
+                    val contactM = ContactModel(this)
+                    contactM.updateContact(contact)
+                    cancel()
+                    Toast.makeText(this, getString(R.string.SaveSuccess).toString(), Toast.LENGTH_LONG).show()
+                })
+            .setNegativeButton(getString(R.string.Cancel).toString()
+                , DialogInterface.OnClickListener {
+                        dialog, id -> dialog.cancel()
+                })
+        val alert = dialogBuilder.create()
+        alert.setTitle(getString(R.string.TitleDialogQuestion).toString())
+        alert.show()
     }
 }
