@@ -3,16 +3,28 @@ package cr.ac.utn.contactmanager
 import Entity.Contact
 import Model.ContactModel
 import Utilities.EXTRA_MESSAGE_CONTACTID
+import Utilities.util.Companion.convertToByteArray
 import android.content.DialogInterface
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.FileProvider
+import java.io.File
 import java.lang.Exception
+
+private const val GALLERY_CONTACT = 101
+private const val CAPTUREPHOTO_CONTACT = 100
+private const val PROVIDER = "cr.ac.utn.contactmanager.fileprovider"
 
 class ContactActivity : AppCompatActivity() {
     lateinit var spCountry: Spinner
@@ -22,7 +34,11 @@ class ContactActivity : AppCompatActivity() {
     lateinit var txtPhone: EditText
     lateinit var txtEmail: EditText
     lateinit var txtAddress: EditText
+    lateinit var imgPhoto: ImageView
+    lateinit var btnCamera: Button
+    lateinit var btnGallery: Button
     var isEdit = false
+    lateinit var filePhoto: File
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +51,17 @@ class ContactActivity : AppCompatActivity() {
         txtPhone = findViewById<EditText>(R.id.txtPhone_Contact)
         txtEmail = findViewById<EditText>(R.id.txtEmail_Contact)
         txtAddress = findViewById<EditText>(R.id.txtAddress_Contact)
+        imgPhoto = findViewById<ImageView>(R.id.imgPhoto_Contact)
+        btnCamera = findViewById<Button>(R.id.btnCamera_Contact)
+        btnGallery = findViewById<Button>(R.id.btnGallery_Contact)
+
+        btnCamera.setOnClickListener(View.OnClickListener { view ->
+            capturePhoto()
+        })
+
+        btnGallery.setOnClickListener(View.OnClickListener { view ->
+            selectGallery()
+        })
 
         loadCountries()
 
@@ -74,6 +101,23 @@ class ContactActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int
+                                  , data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK){
+            if (requestCode == GALLERY_CONTACT){
+                val imageUri = data?.data
+                imgPhoto.setImageURI(imageUri)
+            }
+
+            if (requestCode == CAPTUREPHOTO_CONTACT){
+                val photo = BitmapFactory.decodeFile(filePhoto.absolutePath)
+                imgPhoto.setImageBitmap(photo)
+            }
+        }
+    }
+
     fun loadCountries(){
         if (spCountry != null){
             val adapter = ArrayAdapter.createFromResource(this, R.array.Countries, android.R.layout.simple_spinner_item)
@@ -106,6 +150,9 @@ class ContactActivity : AppCompatActivity() {
                 contact.Email = txtEmail.text.toString()
                 contact.Address = txtAddress.text.toString()
                 contact.Country = spCountry.selectedItem.toString()
+                contact.Photo = convertToByteArray(
+                                    (imgPhoto?.drawable as BitmapDrawable).bitmap
+                                )
 
                 if (!isEdit) {
                     contactM.addContact(contact)
@@ -160,6 +207,9 @@ class ContactActivity : AppCompatActivity() {
             txtAddress.setText(contact.Address.trim())
             val countries = resources.getStringArray(R.array.Countries).toList()
             spCountry.setSelection(countries.indexOf(contact.Country))
+            val photo = BitmapFactory.decodeByteArray(contact.Photo
+                                        , 0, contact.Photo!!.size)
+            imgPhoto.setImageBitmap(photo)
             return true
         }catch (e:Exception){
             Toast.makeText(this, e.message.toString(), Toast.LENGTH_LONG).show()
@@ -206,4 +256,25 @@ class ContactActivity : AppCompatActivity() {
         alert.setTitle(getString(R.string.TitleDialogQuestion).toString())
         alert.show()
     }
+
+    fun capturePhoto(){
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val directoryStorage= getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        filePhoto = File.createTempFile("contact", ".jpg"
+                                            , directoryStorage)
+        val providerFile = FileProvider.getUriForFile(this
+                                    , PROVIDER, filePhoto)
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, providerFile)
+        startActivityForResult(intent, CAPTUREPHOTO_CONTACT)
+    }
+
+    fun selectGallery(){
+        val intent = Intent(Intent.ACTION_PICK
+                , MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+        intent.type = "image/*"
+        startActivityForResult(intent, GALLERY_CONTACT)
+    }
+
+
+
 }

@@ -5,8 +5,10 @@ import android.view.View
 import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import Interface.OnItemClickListener
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 
 class ContactListAdapter (
@@ -40,11 +42,15 @@ class CustomViewHolder(view: View):
     var txtName = view.findViewById<TextView>(R.id.txtContactName_List)
     var txtEmail = view.findViewById<TextView>(R.id.txtContactEmail_List)
     var txtPhone = view.findViewById<TextView>(R.id.txtContactPhone_List)
+    var imgPhoto = view.findViewById<ImageView>(R.id.imgContactPhoto)
 
      fun bind(item: Contact, clickListener: OnItemClickListener){
          txtName.text = item.FullName
          txtEmail.text = item.Email
          txtPhone.text = item.Phone.toString()
+         val photo = BitmapFactory.decodeByteArray(item.Photo
+             , 0, item.Photo!!.size)
+         imgPhoto.setImageBitmap(photo)
 
          itemView.setOnClickListener{
              clickListener.onItemClicked(item)
