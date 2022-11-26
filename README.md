@@ -16,6 +16,7 @@
 8. Camera and Gallery.
 9. Selecting an item in recycler view
 10. Google map
+11. API-KEY:  AIzaSyDQEU32_igPK1RZAM6hKlZ2y509Bg-4zBA
 
 
   
