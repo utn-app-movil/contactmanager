@@ -3,4 +3,8 @@
     <string name="app_name">ContactManager</string>
     <string name="showMessage">Show Message</string>
     <string name="mainMessage">Main Message</string>
+    <string name="DisplayScreen">Click to display a screen 2</string>
+    <string name="UndoMessage">Undo</string>
+    <string name="SendingMessage">Sending message...</string>
+    <string name="CancelledSending">Message was cancelled</string>
 </resources>

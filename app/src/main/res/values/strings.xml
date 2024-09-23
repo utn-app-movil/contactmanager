@@ -2,4 +2,8 @@
     <string name="app_name">ContactManager</string>
     <string name="showMessage">Mostrar Mensaje</string>
     <string name="mainMessage">Mensaje de pantalla principal</string>
+    <string name="DisplayScreen">Clic para mostrar pantalla 2</string>
+    <string name="UndoMessage">Cancelar</string>
+    <string name="SendingMessage">Enviando mensaje...</string>
+    <string name="CancelledSending">Envío cancelado</string>
 </resources>
