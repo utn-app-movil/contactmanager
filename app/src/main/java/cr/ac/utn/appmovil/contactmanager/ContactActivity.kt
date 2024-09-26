@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import cr.ac.utn.appmovil.model.*
+import cr.ac.utn.appmovil.contactmanager.R
 
 class ContactActivity : AppCompatActivity() {
 

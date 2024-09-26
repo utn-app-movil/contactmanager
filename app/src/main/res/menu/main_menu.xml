@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:title="@string/mnu_add_contact"
         android:id="@+id/mnuAddContact"
+        android:title="@string/mnu_add_contact"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/mnuViewContacts"

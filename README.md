@@ -1,13 +1,12 @@
 # ContactManager
 
 **Consideraciones**
-- Este proyecto corre con el API 21
-- Tiene las siguientes funcionalidades:
+- Este proyecto corre mínimo con el API 29 y máximo 34
 
-1. Funcionalidad de menú
-2. Llamado de activity
-3. Mensajeria Toast
+- Tiene las siguientes funcionalidades:
+1. Parent activity
+2. Funcionalidad de menú
 4. Uso de idiomas
-5. Uso de clases
-6. Llamado de metodos estaticos
-7. Parent activity
+5. Uso de TableLayout
+6. Llamado de métodos estáticos
+8. Definición y uso de clases

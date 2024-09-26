@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import cr.ac.utn.appmovil.util.*
+import cr.ac.utn.appmovil.contactmanager.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
