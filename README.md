@@ -1,12 +1,14 @@
 # ContactManager
 
 **Consideraciones**
-- Este proyecto corre con el API 21
+- Este proyecto corre mínimo con el API 29 y máximo 34
+
 - Tiene las siguientes funcionalidades:
 
-1. Almacenamiento de información en colección
-2. Despliegue de listda de información. 
+1. Manejo de clases entity y model
+2. Almacenamiento de información en colección
+2. Despliegue de lista de información. 
 3. Despliegue personalizada de información
 4. PutExtra
-5. Edición de información.
+5. CRUD de información.
 

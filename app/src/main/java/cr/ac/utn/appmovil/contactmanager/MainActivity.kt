@@ -1,6 +1,5 @@
 package cr.ac.utn.appmovil.contactmanager
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -14,6 +13,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val btnContact: Button = findViewById<Button>(R.id.main_btnAddContact)
+        btnContact.setOnClickListener(View.OnClickListener { view ->
+            openActivity(ContactActivity::class.java)
+        })
 
         val btnContactList: Button = findViewById<Button>(R.id.main_btnContactList)
         btnContactList.setOnClickListener(View.OnClickListener { view ->
@@ -46,11 +50,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun addContactButon(view: View) {
-        openActivity(ContactActivity::class.java)
-    }
-
-    fun openActivity(objclass: Class<*>){
-        util.openActivity(this,objclass, "", "")
+    private fun openActivity(objClass: Class<*>){
+        util.openActivity(this,objClass, "", "")
     }
 }

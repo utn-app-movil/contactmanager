@@ -13,9 +13,9 @@ class ContactModel {
 
         fun removeContact(id: String){
             try {
-                var result = contactList.filter { it.Id.equals(id) }
+                val result = contactList.filter { it.id == id }
                 if (!result.any())
-                    throw Exception(Resources.getSystem().getString(R.string.msgInvalidContact).toString())
+                    throw Exception(Resources.getSystem().getString(R.string.msgInvalidContact))
 
                 contactList.remove(result[0])
             }catch (e: Exception){
@@ -27,9 +27,9 @@ class ContactModel {
 
         fun getContact(id: String): Contact{
             try {
-                var result = contactList.filter { (it.FullName).equals(id) }
+                val result = contactList.filter { (it.fullName) == id }
                 if (!result.any())
-                    throw Exception(Resources.getSystem().getString(R.string.msgContactNoFound).toString())
+                    throw Exception(Resources.getSystem().getString(R.string.msgContactNoFound))
 
                 return result[0]
             }catch (e: Exception){
@@ -39,7 +39,7 @@ class ContactModel {
 
         fun getContactNames(): List<String> {
             val names = mutableListOf<String>()
-            contactList.forEach{i-> names.add(i.FullName)}
+            contactList.forEach{i-> names.add(i.fullName)}
             return names.toList()
         }
     }

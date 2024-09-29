@@ -14,11 +14,11 @@ import java.lang.Exception
 
 class ContactActivity : AppCompatActivity() {
 
-    lateinit var txtName: EditText
-    lateinit var txtLastName: EditText
-    lateinit var txtPhone: EditText
-    lateinit var txtEmail: EditText
-    lateinit var txtAddress: EditText
+    private lateinit var txtName: EditText
+    private lateinit var txtLastName: EditText
+    private lateinit var txtPhone: EditText
+    private lateinit var txtEmail: EditText
+    private lateinit var txtAddress: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,41 +54,41 @@ class ContactActivity : AppCompatActivity() {
         }
     }
 
-    fun saveContact(){
+    private fun saveContact(){
         try {
             val contact = Contact()
-            contact.Name = txtName.text.toString()
-            contact.LastName = txtLastName.text.toString()
-            contact.Phone = txtPhone.text.toString()?.toInt()
-            contact.Email = txtEmail.text.toString()
-            contact.Address = txtAddress.text.toString()
+            contact.name = txtName.text.toString()
+            contact.lastName = txtLastName.text.toString()
+            contact.phone = txtPhone.text.toString()?.toInt()!!
+            contact.email = txtEmail.text.toString()
+            contact.address = txtAddress.text.toString()
 
             if (dataValidation(contact)){
                 ContactModel.addContact(contact)
                 cleanScreen()
-                Toast.makeText(this, getString(R.string.msgSave).toString(),Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.msgSave),Toast.LENGTH_LONG).show()
             }else{
-                Toast.makeText(this, getString(R.string.msgInvalidData).toString(),Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.msgInvalidData),Toast.LENGTH_LONG).show()
             }
         }catch (e: Exception){
             Toast.makeText(this, e.message.toString(),Toast.LENGTH_LONG).show()
         }
     }
 
-    fun deleteContact(){
+    private fun deleteContact(){
         //if (dataValidation()){
 
-            Toast.makeText(this, getString(R.string.msgDelete).toString(),Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.msgDelete),Toast.LENGTH_LONG).show()
         //}else{
-          //  Toast.makeText(this, getString(R.string.msgInvalidData).toString(),Toast.LENGTH_LONG).show()
+          //  Toast.makeText(this, getString(R.string.msgInvalidData),Toast.LENGTH_LONG).show()
         //}
     }
 
-    fun dataValidation(contact: Contact): Boolean{
-        return contact.Name.length > 0 && contact.LastName.length > 0 && contact.Address.length > 0 && contact.Email.length > 0 && contact.Phone > 0
+    private fun dataValidation(contact: Contact): Boolean{
+        return contact.name.isNotEmpty() && contact.lastName.isNotEmpty() && contact.address.isNotEmpty() && contact.email.isNotEmpty() && contact.phone > 0
     }
 
-    fun cleanScreen(){
+    private fun cleanScreen(){
         txtName.setText("")
         txtLastName.setText("")
         txtPhone.setText("")
@@ -96,14 +96,14 @@ class ContactActivity : AppCompatActivity() {
         txtAddress.setText("")
     }
 
-    fun loadEditContact(id: String){
+    private fun loadEditContact(id: String){
         try{
             val contact = ContactModel.getContact(id)
-            txtName.setText(contact.Name)
-            txtLastName.setText(contact.LastName)
-            txtPhone.setText(contact.Phone.toString())
-            txtEmail.setText(contact.Email)
-            txtAddress.setText(contact.Address)
+            txtName.setText(contact.name)
+            txtLastName.setText(contact.lastName)
+            txtPhone.setText(contact.phone.toString())
+            txtEmail.setText(contact.email)
+            txtAddress.setText(contact.address)
         }catch (e: Exception){
             Toast.makeText(this, e.message.toString(),Toast.LENGTH_LONG).show()
         }

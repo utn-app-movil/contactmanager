@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import cr.ac.utn.appmovil.identities.Contact
@@ -30,9 +29,9 @@ class ContactAdapter(private val mCtx: Context, private val resource:Int, privat
 
         val contact = dataSource[position] as Contact
 
-        txtContactNameItem.text = contact.FullName
-        txtAddressItem.text = contact.Address
-        txtPhoneItem.text = contact.Phone.toString()
+        txtContactNameItem.text = contact.fullName
+        txtAddressItem.text = contact.address
+        txtPhoneItem.text = contact.phone.toString()
 
         return rowView
 

@@ -19,29 +19,29 @@ class Contact {
         this._address= address
     }
 
-    var Id: String
+    var id: String
         get() = this._id
         set(value) {this._id = value}
 
-    var Name: String
+    var name: String
         get() = this._name
         set(value) {this._name = value}
 
-    var LastName: String
+    var lastName: String
         get() = this._lastName
         set(value) {this._lastName = value}
 
-    val FullName get() = this._name + " " + this._lastName
+    val fullName get() = this._name + " " + this._lastName
 
-    var Phone: Int
+    var phone: Int
         get() = this._phone
         set(value) {this._phone = value}
 
-    var Email: String
+    var email: String
         get() = this._email
         set(value) {this._email = value}
 
-    var Address: String
+    var address: String
         get() = this._address
         set(value) {this._address = value}
 }
