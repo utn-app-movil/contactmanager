@@ -25,13 +25,12 @@ class ContactListCustomActivity : AppCompatActivity() {
         val adapter = ContactAdapter(this, R.layout.list_item_contact, contactModel.getContacts()) // ContactAdapter(this, ArrayList<Contact>(ContactModel.getContacts()))
         lstContactList.adapter = adapter
 
-        lstContactList.onItemClickListener = object : AdapterView.OnItemClickListener{
-            override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        lstContactList.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, view, position, id ->
                 val contacts = contactModel.getContacts()
                 val name = contacts[position].FullName
                 //Toast.makeText(applicationContext, itemValue, Toast.LENGTH_LONG).show()
-                util.openActivity(applicationContext, ContactActivity::class.java, EXTRA_MESSAGE_CONTACTID, name)
+                util.openActivity(this, ContactActivity::class.java, EXTRA_MESSAGE_CONTACTID, name)
             }
-        }
     }
 }

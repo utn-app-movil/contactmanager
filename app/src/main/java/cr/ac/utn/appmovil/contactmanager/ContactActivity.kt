@@ -80,7 +80,7 @@ class ContactActivity : AppCompatActivity() {
             val contact = Contact()
             contact.Name = txtName.text.toString()
             contact.LastName = txtLastName.text.toString()
-            contact.Phone = txtPhone.text.toString()?.toInt()
+            contact.Phone = txtPhone.text.toString()?.toInt()!!
             contact.Email = txtEmail.text.toString()
             contact.Address = txtAddress.text.toString()
 
@@ -106,7 +106,7 @@ class ContactActivity : AppCompatActivity() {
     }
 
     fun dataValidation(contact: Contact): Boolean{
-        return contact.Name.length > 0 && contact.LastName.length > 0 && contact.Address.length > 0 && contact.Email.length > 0 && contact.Phone > 0
+        return contact.Name.isNotEmpty() && contact.LastName.isNotEmpty() && contact.Address.isNotEmpty() && contact.Email.isNotEmpty() && contact.Phone > 0
     }
 
     fun cleanScreen(){
@@ -119,7 +119,7 @@ class ContactActivity : AppCompatActivity() {
 
     fun loadEditContact(id: String){
         try{
-            val contact = contactModel.getContact(id)
+            val contact = contactModel.getContactbyName(id)
             txtName.setText(contact.Name)
             txtLastName.setText(contact.LastName)
             txtPhone.setText(contact.Phone.toString())

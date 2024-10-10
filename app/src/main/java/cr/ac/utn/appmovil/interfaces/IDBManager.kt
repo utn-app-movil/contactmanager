@@ -9,4 +9,5 @@ interface IDBManager {
     //fun remove (contact: Contact)
     fun getAll(): List<Contact>
     fun getByid(id: String): Contact?
+    fun getByFullName(fullName: String): Contact?
 }

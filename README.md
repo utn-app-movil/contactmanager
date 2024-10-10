@@ -1,7 +1,8 @@
 # ContactManager
 
 **Consideraciones**
-- Este proyecto corre con el API 21
+- Este proyecto corre mínimo con el API 29 y máximo 34
+
 - Tiene las siguientes funcionalidades:
 
 1. Recycler View

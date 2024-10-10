@@ -23,7 +23,7 @@ class ContactModel {
     }
 
     fun removeContact(id: String){
-        var result = dbManager.getByid(id)
+        val result = dbManager.getByid(id)
         if (result == null)
             throw Exception(_context.getString(R.string.msgInvalidContact).toString())
 
@@ -34,6 +34,15 @@ class ContactModel {
 
     fun getContact(id: String): Contact{
         var result = dbManager.getByid(id)
+        if (result == null){
+            val message = _context.getString(R.string.msgContactNoFound).toString()
+            throw Exception(message)
+        }
+        return result
+    }
+
+    fun getContactbyName(fullName: String): Contact{
+        var result = dbManager.getByFullName(fullName)
         if (result == null){
             val message = _context.getString(R.string.msgContactNoFound).toString()
             throw Exception(message)

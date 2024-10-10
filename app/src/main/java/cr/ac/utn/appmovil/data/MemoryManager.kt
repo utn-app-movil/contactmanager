@@ -1,10 +1,7 @@
 package cr.ac.utn.appmovil.data
 
-import android.content.res.Resources
-import cr.ac.utn.appmovil.contactmanager.R
 import cr.ac.utn.appmovil.identities.Contact
 import cr.ac.utn.appmovil.interfaces.IDBManager
-import java.util.function.Predicate
 
 object MemoryManager: IDBManager {
     private var contactList = mutableListOf<Contact>()
@@ -18,9 +15,7 @@ object MemoryManager: IDBManager {
 
     }
     override fun remove (id: String){
-        //var filterContact = Predicate {contactId: String -> contactId.trim().equals(id.trim())}
-        //contactList.filter { filterContact.test(it.Id) }.forEach{ contactList.remove(it) }
-        contactList.removeIf { it.Id.trim().equals(id.trim()) }
+        contactList.removeIf { it.Id.trim() == id.trim() }
     }
 
     fun remove (contact: Contact){
@@ -31,7 +26,16 @@ object MemoryManager: IDBManager {
 
     override fun getByid(id: String): Contact? {
         try {
-            var result = contactList.filter { (it.Id).equals(id) }
+            var result = contactList.filter { (it.Id) == id }
+            return if(!result.any()) null else result[0]
+        }catch (e: Exception){
+            throw e
+        }
+    }
+
+    override fun getByFullName(fullName: String): Contact? {
+        try {
+            var result = contactList.filter { (it.FullName) == fullName }
             return if(!result.any()) null else result[0]
         }catch (e: Exception){
             throw e

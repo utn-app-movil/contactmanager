@@ -21,12 +21,11 @@ class ContactListActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, contactModel.getContactNames())
         lstContactList.adapter = adapter
 
-        lstContactList.onItemClickListener = object : AdapterView.OnItemClickListener{
-            override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        lstContactList.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, view, position, id ->
                 val itemValue = lstContactList.getItemAtPosition(position) as String
                 //Toast.makeText(applicationContext, "Position: $position\nItem Value: $itemValue", Toast.LENGTH_LONG).show()
-                util.openActivity(applicationContext, ContactActivity::class.java, EXTRA_MESSAGE_CONTACTID, itemValue)
+                util.openActivity(this, ContactActivity::class.java, EXTRA_MESSAGE_CONTACTID, itemValue)
             }
-        }
     }
 }
