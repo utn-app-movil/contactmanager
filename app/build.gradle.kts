@@ -4,22 +4,17 @@ plugins {
 }
 
 android {
-    namespace = "cr.ac.utn.appmovil.contactmanager"
+    namespace = "cr.ac.utn.contactmanager"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "cr.ac.utn.appmovil.contactmanager"
+        applicationId = "cr.ac.utn.contactmanager"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildFeatures{
-        viewBinding = true
-        dataBinding = true
     }
 
     buildTypes {
