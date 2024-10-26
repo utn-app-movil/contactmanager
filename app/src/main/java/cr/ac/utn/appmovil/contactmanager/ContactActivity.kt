@@ -111,7 +111,7 @@ class ContactActivity : AppCompatActivity() {
             val contact = Contact()
             contact.Name = txtName.text.toString()
             contact.LastName = txtLastName.text.toString()
-            contact.Phone = txtPhone.text.toString()?.toInt()
+            contact.Phone = txtPhone.text.toString()?.toInt()!!
             contact.Email = txtEmail.text.toString()
             contact.Address = txtAddress.text.toString()
             contact.Photo = (imgPhoto?.drawable as BitmapDrawable).bitmap
@@ -228,6 +228,7 @@ class ContactActivity : AppCompatActivity() {
             imgPhoto.setImageBitmap(takenPhoto)
         }
     }
+
     fun loadCountries(){
         countries = resources.getStringArray(R.array.Countries).toList()
         if (spCountries != null) {
