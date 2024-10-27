@@ -1,22 +1,31 @@
 package Entities
 
 class Contact {
+
+
     private var _id: String =""
     private var _name: String =""
     private var _lastName: String=""
     private var _phone: Int = 0
     private var _email: String=""
     private var _address: String=""
+    private var _photo: ByteArray? = null
+    private var _country: String = ""
+
 
     constructor()
 
-    constructor(id: String, name: String, lastName: String, phone: Int, email: String, address: String){
+    constructor(id: String, name: String, lastName: String, phone: Int, email: String, address: String, country: String
+                , photo: ByteArray?){
         this._id= id
         this._name= name
         this._lastName = lastName
         this._phone=phone
         this._email=email
         this._address= address
+        this._country = country
+        this._photo = photo
+
     }
 
     var id: String
@@ -44,4 +53,12 @@ class Contact {
     var address: String
         get() = this._address
         set(value) {this._address = value}
+
+    var Photo: ByteArray?
+        get() = this._photo
+        set(value) {this._photo = value}
+
+    var Country: String
+        get() = this._country
+        set (value) { this._country = value }
 }

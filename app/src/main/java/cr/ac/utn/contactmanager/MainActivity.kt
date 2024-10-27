@@ -3,6 +3,7 @@ package cr.ac.utn.contactmanager
 
 import Util.util
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -41,6 +42,12 @@ class MainActivity : AppCompatActivity() {
         btnMainDialog.setOnClickListener(View.OnClickListener {
             DisplayDialog()
         })
+        val btnContactList = findViewById<Button>(R.id.btnMainContactList)
+        btnContactList.setOnClickListener {
+            // Navegar a la lista de contactos
+            val intent = Intent(this, ContactListAdapter::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun DisplayDialog(){
@@ -59,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         alert.show()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean{
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.main_menu, menu)
         return true
@@ -67,16 +74,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
-            R.id.mnu_Contact ->{
-                util.openActivity(this, ContactActivity::class.java)
-                return true
+            R.id.mnu_Contact -> {
+                openActivity (ContactActivity::class.java)
+                true
             }
-            R.id.mnu_ContactList ->{
-                util.openActivity(this, ContactListActivity::class.java)
-                return true
+            R.id.mnu_ContactList -> {
+                openActivity (ContactListActivity::class.java)
+                true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun openActivity(objclass: Class<*>){
+        val contactIntent = Intent(this, objclass)
+        startActivity(contactIntent, null)
+    }
     }
 
 
@@ -87,4 +100,3 @@ class MainActivity : AppCompatActivity() {
 
 
 
-}

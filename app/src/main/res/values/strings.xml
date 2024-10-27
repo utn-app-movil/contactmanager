@@ -14,4 +14,30 @@
     <string name="msgContactNotFound">The contact does not exist.</string>
     <string name="msgSave">The information was saved successfully.</string>
     <string name="msgMissingData">Missing data, please check all required informationl.</string>
+    <string name="showMessage" translatable="false">Mostrar Mensaje</string>
+    <string name="showContact" translatable="false">Abrir Contactos</string>
+
+    <string-array name="Countries">
+        <item>Costa Rica</item>
+        <item>Estados Unidos</item>
+        <item>Japón</item>
+        <item>México</item>
+        <item>España</item>
+        <item>India</item>
+        <item>Argentina</item>
+        <item>Brasil</item>
+        <item>Italia</item>
+        <item>Honduras</item>
+    </string-array>
+    <string name="MissingContactData" translatable="false">La información del contacto está incompleta</string>
+    <string name="SaveSuccess" translatable="false">La información de guardó exitosamente.</string>
+    <string name="DeleteSuccess" translatable="false">La información se eliminó exitosamente.</string>
+    <string name="ConfirmDelete" translatable="false">Desea eliminar la información?</string>
+    <string name="OK" translatable="false">Aceptar</string>
+    <string name="TitleDialogQuestion" translatable="false">Pregunta</string>
+    <string name="ConfirmUpdate" translatable="false">Desea actualizar la información?</string>
+    <string name="showCamera" translatable="false">Cámara</string>
+    <string name="showGallery" translatable="false">Galería</string>
+    <string name="ContactCountry" />
+
 </resources>

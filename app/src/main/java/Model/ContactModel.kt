@@ -57,4 +57,10 @@ class ContactModel {
         }
         return result
     }
+
+    fun isContactDuplicate(contact: Contact): Boolean {
+        val existingContact = dbManager.getById(contact.id)
+        val existingEmailContact = dbManager.getByFullName(contact.email)
+        return existingContact != null || existingEmailContact != null
+    }
 }
