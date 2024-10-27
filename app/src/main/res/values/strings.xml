@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ContactManager</string>
+    <string name="btnAddContact">Add Contact</string>
+    <string name="btnContactList">View Contacts</string>
+    <string name="save">Save</string>
+    <string name="Remove">Remove</string>
+    <string name="Cancel">Cancel</string>
+    <string name="ContactId">Contact Id</string>
+    <string name="ContactName">Name</string>
+    <string name="ContactLastName">LastName</string>
+    <string name="ContactPhone">Phone</string>
+    <string name="ContactEmail">Email</string>
+    <string name="ContactAddress">Address</string>
+    <string name="msgContactNotFound">The contact does not exist.</string>
+    <string name="msgSave">The information was saved successfully.</string>
+    <string name="msgMissingData">Missing data, please check all required informationl.</string>
+    <string name="customList">Custom List</string>
+</resources>
