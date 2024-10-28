@@ -4,16 +4,11 @@ import Data.MemoryManager
 import Entities.Contact
 import Interfaces.IDBManager
 import android.content.Context
-import android.content.res.Resources
 import com.blopix.myapplication.R
 
-class ContactModel {
+class ContactModel(context: Context) {
     private var dbManager: IDBManager = MemoryManager
-    private lateinit var _context: Context
-
-    constructor(context: Context) {
-        _context = context
-    }
+    private val _context: Context = context
 
     fun addContact(contact: Contact) {
         dbManager.add(contact)
@@ -31,9 +26,7 @@ class ContactModel {
     }
 
     fun getContactNames(): List<String> {
-        val names = mutableListOf<String>()
-        dbManager.getAll().forEach { i -> names.add(i.fullName) }
-        return names.toList()
+        return dbManager.getAll().map { it.fullName }
     }
 
     fun remContact(id: String) {
@@ -56,5 +49,12 @@ class ContactModel {
             throw Exception(message)
         }
         return result
+    }
+
+    // Método isDuplicate para verificar duplicados por ID o correo electrónico
+    fun isDuplicate(contact: Contact): Boolean {
+        return dbManager.getAll().any {
+            it.id == contact.id || it.email.equals(contact.email, ignoreCase = true)
+        }
     }
 }

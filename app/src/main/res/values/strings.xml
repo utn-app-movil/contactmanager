@@ -25,5 +25,6 @@
     <string name="msgMissingId">Missing contact ID</string>
     <string name="msgNotInEditMode">Not in edit mode</string>
     <string name="btnCustomList">View a Custom List</string>
+    <string name="msgDuplicate">Contact Duplicate</string>
 
 </resources>

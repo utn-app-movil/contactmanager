@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="contactIdLayout" type="id" />
-    <item name="contactNameLayout" type="id" />
-    <item name="contactLastNameLayout" type="id" />
-    <item name="contactPhoneLayout" type="id" />
-    <item name="contactEmailLayout" type="id" />
-    <item name="contactAddressLayout" type="id" />
-</resources>

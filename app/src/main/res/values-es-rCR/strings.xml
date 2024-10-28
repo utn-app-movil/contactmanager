@@ -22,4 +22,5 @@
     <string name="msgMissingId">No se encontro el id</string>
     <string name="msgNotInEditMode">No esta en modo de edición</string>
     <string name="btnCustomList">Ver una lista personalizada</string>
+    <string name="msgDuplicate">Contacto duplicado</string>
 </resources>
