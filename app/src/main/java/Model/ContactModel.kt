@@ -5,62 +5,56 @@ import Entities.Contact
 import Interfaces.IDBManager
 import android.content.Context
 import android.content.res.Resources
-import cr.ac.utn.contactmanager.R
+import com.blopix.myapplication.R
 
 class ContactModel {
-    private var dbManager: IDBManager= MemoryManager
+    private var dbManager: IDBManager = MemoryManager
     private lateinit var _context: Context
 
-    constructor(context: Context){
-        _context= context
+    constructor(context: Context) {
+        _context = context
     }
 
-    fun addContact (contact: Contact){
+    fun addContact(contact: Contact) {
         dbManager.add(contact)
     }
 
     fun getContacts() = dbManager.getAll()
 
-    fun getContact(id: String): Contact{
-        var result = dbManager.getById(id)
-        if (result == null){
+    fun getContact(id: String): Contact {
+        val result = dbManager.getById(id)
+        if (result == null) {
             val message = _context.getString(R.string.msgContactNotFound)
             throw Exception(message)
         }
         return result
     }
 
-    fun getContactNames(): List<String>{
+    fun getContactNames(): List<String> {
         val names = mutableListOf<String>()
-        dbManager.getAll().forEach { i-> names.add(i.fullName) }
+        dbManager.getAll().forEach { i -> names.add(i.fullName) }
         return names.toList()
     }
 
-    fun removeContact(id: String){
+    fun remContact(id: String) {
         val result = dbManager.getById(id)
-        if (result == null){
+        if (result == null) {
             val message = _context.getString(R.string.msgContactNotFound)
             throw Exception(message)
         }
         dbManager.remove(id)
     }
 
-    fun updateContact(contact: Contact){
+    fun updateContact(contact: Contact) {
         dbManager.update(contact)
     }
 
     fun getContactByFullName(fullName: String): Contact {
-        var result = dbManager.getByFullName(fullName)
-        if (result == null){
+        val result = dbManager.getByFullName(fullName)
+        if (result == null) {
             val message = _context.getString(R.string.msgContactNotFound)
             throw Exception(message)
         }
         return result
-    }
-
-    fun isContactDuplicate(contact: Contact): Boolean {
-        val existingContact = dbManager.getById(contact.id)
-        val existingEmailContact = dbManager.getByFullName(contact.email)
-        return existingContact != null || existingEmailContact != null
     }
 }

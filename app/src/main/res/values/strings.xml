@@ -1,43 +1,29 @@
 <resources>
-    <string name="app_name">ContactManager</string>
-    <string name="btnAddContact">Add Contact</string>
-    <string name="btnContactList">View Contacts</string>
-    <string name="save">Save</string>
-    <string name="Remove">Remove</string>
-    <string name="Cancel">Cancel</string>
-    <string name="ContactId">Contact Id</string>
+    <string name="app_name">Contact Manager</string>
+    <string name="Add_contact">Add Contact</string>
+    <string name="ViewContactList">View Contact list</string>
+    <string name="MensajeContacto">Add new contacts</string>
+    <string name="MensajeListaContactos">Contact list</string>
+
+    // Opciones de menu
+    <string name="Menu_Save">Save</string>
+    <string name="Menu_Delete">Delete</string>
+    <string name="Menu_Cancel">Cancel</string>
+
+    //Contacto del usuario
+    <string name="ContactId">ContactId</string>
     <string name="ContactName">Name</string>
     <string name="ContactLastName">LastName</string>
     <string name="ContactPhone">Phone</string>
-    <string name="ContactEmail">Email</string>
     <string name="ContactAddress">Address</string>
-    <string name="msgContactNotFound">The contact does not exist.</string>
-    <string name="msgSave">The information was saved successfully.</string>
-    <string name="msgMissingData">Missing data, please check all required informationl.</string>
-    <string name="showMessage" translatable="false">Mostrar Mensaje</string>
-    <string name="showContact" translatable="false">Abrir Contactos</string>
-
-    <string-array name="Countries">
-        <item>Costa Rica</item>
-        <item>Estados Unidos</item>
-        <item>Japón</item>
-        <item>México</item>
-        <item>España</item>
-        <item>India</item>
-        <item>Argentina</item>
-        <item>Brasil</item>
-        <item>Italia</item>
-        <item>Honduras</item>
-    </string-array>
-    <string name="MissingContactData" translatable="false">La información del contacto está incompleta</string>
-    <string name="SaveSuccess" translatable="false">La información de guardó exitosamente.</string>
-    <string name="DeleteSuccess" translatable="false">La información se eliminó exitosamente.</string>
-    <string name="ConfirmDelete" translatable="false">Desea eliminar la información?</string>
-    <string name="OK" translatable="false">Aceptar</string>
-    <string name="TitleDialogQuestion" translatable="false">Pregunta</string>
-    <string name="ConfirmUpdate" translatable="false">Desea actualizar la información?</string>
-    <string name="showCamera" translatable="false">Cámara</string>
-    <string name="showGallery" translatable="false">Galería</string>
-    <string name="ContactCountry" />
+    <string name="ContactEmail">Email</string>
+    <string name="msgContactNotFound">The contact doesn\'t exists</string>
+    <string name="msgSave">Saved contact</string>
+    <string name="msgUpdate">Updated contact</string>
+    <string name="msgMissingData">Missing data to save</string>
+    <string name="msgDelete">Delete successful</string>
+    <string name="msgMissingId">Missing contact ID</string>
+    <string name="msgNotInEditMode">Not in edit mode</string>
+    <string name="btnCustomList">View a Custom List</string>
 
 </resources>

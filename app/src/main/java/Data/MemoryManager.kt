@@ -2,11 +2,9 @@ package Data
 
 import Entities.Contact
 import Interfaces.IDBManager
-import android.content.res.Resources
-import cr.ac.utn.contactmanager.R
 
-object MemoryManager:IDBManager {
-    private var contactList= mutableListOf<Contact>()
+object MemoryManager : IDBManager {
+    private var contactList = mutableListOf<Contact>()
 
     override fun add(contact: Contact) {
         contactList.add(contact)
@@ -21,13 +19,13 @@ object MemoryManager:IDBManager {
         contactList.removeIf { it.id.trim() == id.trim() }
     }
 
-    override fun getAll(): List<Contact> =  contactList.toList()
+    override fun getAll(): List<Contact> = contactList.toList()
 
     override fun getById(id: String): Contact? {
         try {
             var result = contactList.filter { (it.id) == id }
-            return if(!result.any()) null else result[0]
-        }catch (e: Exception){
+            return if (!result.any()) null else result[0]
+        } catch (e: Exception) {
             throw e
         }
     }
@@ -35,11 +33,12 @@ object MemoryManager:IDBManager {
     override fun getByFullName(fullName: String): Contact? {
         try {
             var result = contactList.filter { (it.fullName) == fullName }
-            return if(!result.any()) null else result[0]
-        }catch (e: Exception){
+            return if (!result.any()) null else result[0]
+
+
+        } catch (e: Exception) {
             throw e
         }
     }
-
 
 }

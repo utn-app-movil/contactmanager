@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace = "cr.ac.utn.contactmanager"
+    namespace = "com.blopix.myapplication"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "cr.ac.utn.contactmanager"
-        minSdk = 29
+        applicationId = "com.blopix.myapplication"
+        minSdk = 30
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -42,12 +42,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("com.google.android.material:material:1.8.0")
-    implementation("androidx.recyclerview:recyclerview:1.3.0")
-
-
 }

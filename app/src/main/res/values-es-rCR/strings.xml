@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ContactManager</string>
-    <string name="btnAddContact">Agregar Contacto</string>
-    <string name="btnContactList">Mostrar Lista Contactos</string>
-    <string name="save">Guardar</string>
-    <string name="Remove">Eliminar</string>
-    <string name="Cancel">Cancelar</string>
-    <string name="ContactId">Id Contacto</string>
+    <string name="app_name">Contact Manager</string>
+    <string name="Add_contact">Agregar contacto</string>
+    <string name="ViewContactList">Ver lista de contactos</string>
+    <string name="MensajeContacto">Agregue contactos nuevos</string>
+    <string name="MensajeListaContactos">Lista de contactos</string>
+    <string name="Menu_Save">Guardar</string>
+    <string name="Menu_Delete">Eliminar</string>
+    <string name="Menu_Cancel">Cancelar</string>
+    <string name="ContactId">IdContacto</string>
     <string name="ContactName">Nombre</string>
     <string name="ContactLastName">Apellido</string>
     <string name="ContactPhone">Teléfono</string>
-    <string name="ContactEmail">Correo</string>
     <string name="ContactAddress">Dirección</string>
-    <string name="msgContactNotFound">El contacto no fue encontrado.</string>
-    <string name="msgSave">La información fue guardada.</string>
-    <string name="msgMissingData">Faltan datos requeridos, por favor revise.</string>
+    <string name="ContactEmail">Correo</string>
+    <string name="msgContactNotFound">El contacto no existe o no fue encontrado</string>
+    <string name="msgSave">Contacto guardado correctamente</string>
+    <string name="msgUpdate">Contacto actualizado</string>
+    <string name="msgMissingData">Falta información</string>
+    <string name="msgDelete">Borrado satisfactoriamente</string>
+    <string name="msgMissingId">No se encontro el id</string>
+    <string name="msgNotInEditMode">No esta en modo de edición</string>
+    <string name="btnCustomList">Ver una lista personalizada</string>
 </resources>
