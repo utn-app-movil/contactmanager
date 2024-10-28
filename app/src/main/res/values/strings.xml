@@ -1,0 +1,49 @@
+<resources>
+<<<<<<< HEAD
+    <string name="app_name">Contact Manager</string>
+    <string name="mnu_add_contact">Add Contact</string>
+    <string name="mnu_contact_list">View All Contacts</string>
+    <string name="contactName">Name</string>
+    <string name="contactLastName">Last Name</string>
+    <string name="contactPhone">Phone</string>
+    <string name="contactEmail">Email</string>
+    <string name="contactAddress">Address</string>
+    <string name="save">save</string>
+    <string name="msgSave">The information has been saved.</string>
+    <string name="msgDelete">The information has been deleted.</string>
+    <string name="delete">Delete</string>
+    <string name="msgInvalidData">Missing or invalid information. Please check.</string>
+    <string name="msgInvalidContact">The contact is not correct.</string>
+    <string name="msgContactNoFound">The contact is not found.</string>
+    <string name="mnu_contact_list_custom">View Contact List Custom</string>
+    <string name="mnuRecycleView">Recycler View List</string>
+    <string name="DisplayDialog">Display Dialog</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Ok">Ok</string>
+    <string name="QuestionCloseApp">Do you want to close this application?</string>
+    <string name="TitleDialogQuestion">Question</string>
+    <string name="CustomDialog">Custom Dialog</string>
+    <string name="ConfirmDelete">Do you want to delete the information?</string>
+    <string name="TakePicture">Take a picture</string>
+    <string name="SelectPhoto">Select Photo</string>
+    <string name="CurrentLocationMap">Current Location</string>
+    <string name="GoogleMap">Google Map</string>
+=======
+    <string name="app_name">ContactManager</string>
+    <string name="btnAddContact">Add Contact</string>
+    <string name="btnContactList">View Contacts</string>
+    <string name="save">Save</string>
+    <string name="Remove">Remove</string>
+    <string name="Cancel">Cancel</string>
+    <string name="ContactId">Contact Id</string>
+    <string name="ContactName">Name</string>
+    <string name="ContactLastName">LastName</string>
+    <string name="ContactPhone">Phone</string>
+    <string name="ContactEmail">Email</string>
+    <string name="ContactAddress">Address</string>
+    <string name="msgContactNotFound">The contact does not exist.</string>
+    <string name="msgSave">The information was saved successfully.</string>
+    <string name="msgMissingData">Missing data, please check all required informationl.</string>
+    <string name="customList">Custom List</string>
+>>>>>>> 890df11 (Se subió la tarea 04)
+</resources>
