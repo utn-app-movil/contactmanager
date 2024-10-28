@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ContactManager</string>
+    <string name="btnAddContact">Agregar Contacto</string>
+    <string name="btnContactList">Mostrar Lista Contactos</string>
+    <string name="save">Guardar</string>
+    <string name="Remove">Eliminar</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="ContactId">Id Contacto</string>
+    <string name="ContactName">Nombre</string>
+    <string name="ContactLastName">Apellido</string>
+    <string name="ContactPhone">Teléfono</string>
+    <string name="ContactEmail">Correo</string>
+    <string name="ContactAddress">Dirección</string>
+    <string name="msgContactNotFound">El contacto no fue encontrado.</string>
+    <string name="msgSave">La información fue guardada.</string>
+    <string name="msgMissingData">Faltan datos requeridos, por favor revise.</string>
+    <string name="msgContactexist">El ID introducido ya existe</string>
+    <string name="msgready">Listo</string>
+    <string name="msgnotnumber">El numero debe ser minimo de 8 digitos</string>
+    <string name="msgnotemail">El email no es aceptado</string>
+    <string name="msgmuchtext">demaciado texto</string>
+    <string name="msgsure">Estas seguro</string>
+    <string name="msgNo">No</string>
+    <string name="msgupdate">actualizar</string>
+    <string name="btnCustomList">Lista Personalizada</string>
+    <string name="msgsaveContact">Contacto Guardado</string>
+</resources>
