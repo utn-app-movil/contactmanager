@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="@string/mnu_add_contact"
-        android:id="@+id/mnuAddContact"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/mnu_Contact"
+        android:title="@string/btnAddContact" />
     <item
-        android:id="@+id/mnuViewContacts"
-        android:title="@string/mnu_contact_list" />
+        android:id="@+id/mnu_ContactList"
+        android:title="@string/btnContactList" />
 </menu>
