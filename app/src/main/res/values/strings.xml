@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">ContactManager</string>
+    <string name="btnAddContact">Add Contact</string>
+    <string name="btnContactList">View Contacts</string>
+    <string name="save">Save</string>
+    <string name="Remove">Remove</string>
+    <string name="Cancel">Cancel</string>
+
+
+    <string name="Add_contact" translatable="false">Add Contact</string>
+    <string name="ViewContactList" translatable="false">View Contact list</string>
+    <string name="MensajeContacto" translatable="false">Add new contacts</string>
+    <string name="MensajeListaContactos" translatable="false">Contact list</string>
+
+    // Opciones de menu
+    <string name="Menu_Save" translatable="false">Save</string>
+    <string name="Menu_Delete" translatable="false">Delete</string>
+    <string name="Menu_Cancel" translatable="false">Cancel</string>
+
+    //Contacto del usuario
+    <string name="ContactId">ContactId</string>
+    <string name="ContactName">Name</string>
+    <string name="ContactLastName">LastName</string>
+    <string name="ContactPhone">Phone</string>
+    <string name="ContactAddress">Address</string>
+    <string name="ContactEmail">Email</string>
+    <string name="msgContactNotFound">The contact doesn\'t exists</string>
+    <string name="msgSave">Saved contact</string>
+    <string name="msgUpdate" translatable="false">Updated contact</string>
+    <string name="msgMissingData">Missing data to save</string>
+    <string name="msgDelete" translatable="false">Delete successful</string>
+    <string name="msgMissingId" translatable="false">Missing contact ID</string>
+    <string name="msgNotInEditMode" translatable="false">Not in edit mode</string>
+    <string name="btnCustomList" translatable="false">View a Custom List</string>
+    <string name="msgDuplicate" translatable="false">Duplicate Contact</string>
+</resources>
