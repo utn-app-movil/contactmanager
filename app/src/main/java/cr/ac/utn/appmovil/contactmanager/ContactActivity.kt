@@ -42,6 +42,7 @@ class ContactActivity : AppCompatActivity() {
     lateinit var filePhoto: File
     lateinit var spCountries: Spinner
     lateinit var countries: List<String>
+    lateinit var contactMod: ContactModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +56,7 @@ class ContactActivity : AppCompatActivity() {
         imgPhoto = findViewById(R.id.imgPhoto_Contact)
         spCountries = findViewById<Spinner>(R.id.spCountries_contact)
 
+        contactMod = ContactModel(this)
         loadCountries()
 
         spCountries.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
@@ -99,7 +101,7 @@ class ContactActivity : AppCompatActivity() {
                 true
             }
             R.id.mnuDelete -> {
-                deleteContact()
+                confirmDelete()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -119,9 +121,9 @@ class ContactActivity : AppCompatActivity() {
 
             if (dataValidation(contact)){
                 if (!isEdit)
-                    ContactModel.addContact(contact)
+                    contactMod.addContact(contact)
                 else
-                    ContactModel.updateContact(contactIdEdit, contact)
+                    contactMod.updateContact(contact)
 
                 cleanScreen()
                 Toast.makeText(this, getString(R.string.msgSave).toString(),Toast.LENGTH_LONG).show()
@@ -131,15 +133,6 @@ class ContactActivity : AppCompatActivity() {
         }catch (e: Exception){
             Toast.makeText(this, e.message.toString(),Toast.LENGTH_LONG).show()
         }
-    }
-
-    fun deleteContact(){
-        //if (dataValidation()){
-
-            Toast.makeText(this, getString(R.string.msgDelete).toString(),Toast.LENGTH_LONG).show()
-        //}else{
-          //  Toast.makeText(this, getString(R.string.msgInvalidData).toString(),Toast.LENGTH_LONG).show()
-        //}
     }
 
     fun dataValidation(contact: Contact): Boolean{
@@ -158,7 +151,7 @@ class ContactActivity : AppCompatActivity() {
 
     fun loadEditContact(id: String): Boolean{
         try{
-            val contact = ContactModel.getContact(id)
+            val contact = contactMod.getContact(id)
             contactIdEdit= contact.FullName.trim()
             txtName.setText(contact.Name)
             txtLastName.setText(contact.LastName)
@@ -183,7 +176,7 @@ class ContactActivity : AppCompatActivity() {
             .setPositiveButton(getString(R.string.Ok), DialogInterface.OnClickListener {
                     dialog, id ->
 
-                ContactModel.deleteContact(contactIdEdit)
+                contactMod.removeContact(contactIdEdit)
                 cleanScreen()
                 Toast.makeText(this, getString(R.string.msgDelete).toString(), Toast.LENGTH_LONG).show()
 

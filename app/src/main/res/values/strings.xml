@@ -18,6 +18,7 @@
     <string name="mnuRecycleView">Recycler View List</string>
     <string name="DisplayDialog">Display Dialog</string>
     <string name="Cancel">Cancel</string>
+    <string name="msgNotFoundContact">El contacto no existe.</string>
     <string name="Ok">Ok</string>
     <string name="QuestionCloseApp">Do you want to close this application?</string>
     <string name="TitleDialogQuestion">Question</string>

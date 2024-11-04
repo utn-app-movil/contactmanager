@@ -1,50 +1,51 @@
 package cr.ac.utn.appmovil.model
+import android.content.Context
 import android.content.res.Resources
 import cr.ac.utn.appmovil.contactmanager.R
+import cr.ac.utn.appmovil.data.MemoryManager
 import cr.ac.utn.appmovil.identities.Contact
+import cr.ac.utn.appmovil.interfaces.IDBManager
 
 class ContactModel {
-    companion object  {
-        private var contactList = mutableListOf<Contact>()
+    private var dbManager: IDBManager = MemoryManager
+    private lateinit var _context: Context
 
-        fun addContact(contact: Contact){
-            contactList.add(contact)
-        }
-
-        fun updateContact(olId:String, contact: Contact){
-            val delContact = getContact(olId)
-            contactList.remove(delContact)
-            contactList.add(contact)
-        }
-
-        fun deleteContact(id: String){
-            try {
-                val delContact = getContact(id)
-                contactList.remove(delContact)
-            }catch (e: Exception){
-                throw e
-            }
-        }
-
-        fun getContacts()= contactList.toList()
-
-        fun getContact(id: String): Contact{
-            try {
-                var result = contactList.filter { (it.FullName).equals(id) }
-                if (!result.any()){
-                    val system  = Resources.getSystem()
-                    throw Exception(system.getString(R.string.msgContactNoFound).toString())
-                }
-                return result[0]
-            }catch (e: Exception){
-                throw e
-            }
-        }
-
-        fun getContactNames(): List<String> {
-            val names = mutableListOf<String>()
-            contactList.forEach{i-> names.add(i.FullName)}
-            return names.toList()
-        }
+    constructor(context: Context){
+        _context= context
     }
+
+    fun addContact(contact: Contact){
+        dbManager.add(contact)
+    }
+
+    fun updateContact(contact: Contact){
+        dbManager.update(contact)
+    }
+
+    fun removeContact(id: String){
+        var result = dbManager.getById(id)
+        if (result == null)
+            throw Exception(Resources.getSystem().getString(R.string.msgNotFoundContact))
+
+        dbManager.remove(id)
+    }
+
+    fun getContacts() = dbManager.getAll()
+
+    fun getContact(id: String): Contact{
+        var result = dbManager.getById(id)
+        if (result == null){
+            val message = _context.getString(R.string.msgNotFoundContact).toString()
+            throw Exception(message)
+        }
+        return result
+    }
+
+    fun getContactNames(): List<String>{
+        val names = mutableListOf<String>()
+        val contacts = dbManager.getAll()
+        contacts.forEach { i-> names.add(i.FullName)  }
+        return names.toList()
+    }
+
 }
