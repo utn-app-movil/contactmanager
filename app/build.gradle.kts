@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "cr.ac.utn.appmovil.contactmanager"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "cr.ac.utn.appmovil.contactmanager"

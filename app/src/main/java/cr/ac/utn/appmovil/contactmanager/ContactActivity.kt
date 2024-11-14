@@ -1,5 +1,7 @@
 package cr.ac.utn.appmovil.contactmanager
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -22,6 +24,8 @@ class ContactActivity : AppCompatActivity() {
     lateinit var txtEmail: EditText
     lateinit var txtAddress: EditText
     lateinit var contactModel: ContactModel
+    private var isEditionMode: Boolean = false
+    private lateinit var menuitemDelete: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,23 +38,6 @@ class ContactActivity : AppCompatActivity() {
         txtEmail = findViewById<EditText>(R.id.txtContactEmail)
         txtAddress = findViewById<EditText>(R.id.txtContactAddress)
 
-        /*-------------TEMPORAL- DESPUES HAY QUE BORRARLO--------------------------*/
-        addContact()
-
-        val btnSaveContact: Button = findViewById<Button>(R.id.btnSaveContact)
-        btnSaveContact.setOnClickListener(View.OnClickListener { view ->
-            val contactM= ContactModel(this)
-            try{
-                var contact = contactM.getContact("A100")
-                Toast.makeText(this, contact.FullName, Toast.LENGTH_LONG).show()
-
-            }catch (e: Exception){
-                Toast.makeText(this, e.message.toString(), Toast.LENGTH_LONG).show()
-            }
-        })
-        //--------------------------------------------
-
-
         val contactId = intent.getStringExtra(EXTRA_MESSAGE_CONTACTID)
         if (contactId != null && contactId != "") loadEditContact(contactId.toString())
     }
@@ -58,6 +45,11 @@ class ContactActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.contact_menu, menu)
+        menuitemDelete = menu!!.findItem(R.id.mnuDelete)
+        if (isEditionMode)
+            menuitemDelete.isVisible = true
+        else
+            menuitemDelete.isVisible =false
         return true
     }
 
@@ -68,8 +60,20 @@ class ContactActivity : AppCompatActivity() {
                 true
             }
             R.id.mnuDelete -> {
-                deleteContact()
-                true
+                val dialogBuilder = AlertDialog.Builder(this)
+                dialogBuilder.setMessage("Desea eliminar el contacto?")
+                    .setCancelable(false)
+                    .setPositiveButton("Si", DialogInterface.OnClickListener{
+                            dialog, id -> deleteContact()
+                    })
+                    .setNegativeButton("No", DialogInterface.OnClickListener {
+                            dialog, id -> dialog.cancel()
+                    })
+
+                val alert = dialogBuilder.create()
+                alert.setTitle("Titulo del dialog")
+                alert.show()
+                return true
             }
             else -> super.onOptionsItemSelected(item)
         }
@@ -85,7 +89,10 @@ class ContactActivity : AppCompatActivity() {
             contact.Address = txtAddress.text.toString()
 
             if (dataValidation(contact)){
-                contactModel.addContact(contact)
+                if (!isEditionMode)
+                    contactModel.addContact(contact)
+                else
+                    contactModel.updateContact(contact)
                 cleanScreen()
                 Toast.makeText(this, getString(R.string.msgSave).toString(),Toast.LENGTH_LONG).show()
             }else{
@@ -96,17 +103,15 @@ class ContactActivity : AppCompatActivity() {
         }
     }
 
-    fun deleteContact(){
-        //if (dataValidation()){
-
-            Toast.makeText(this, getString(R.string.msgDelete).toString(),Toast.LENGTH_LONG).show()
-        //}else{
-          //  Toast.makeText(this, getString(R.string.msgInvalidData).toString(),Toast.LENGTH_LONG).show()
-        //}
+    fun dataValidation(contact: Contact): Boolean{
+        return contact.Name.isNotEmpty() &&
+                contact.LastName.isNotEmpty() && contact.Address.isNotEmpty() &&
+                contact.Email.isNotEmpty() &&
+                (contact.Phone != null && contact.Phone > 0)
     }
 
-    fun dataValidation(contact: Contact): Boolean{
-        return contact.Name.isNotEmpty() && contact.LastName.isNotEmpty() && contact.Address.isNotEmpty() && contact.Email.isNotEmpty() && contact.Phone > 0
+    private fun deleteContact(){
+
     }
 
     fun cleanScreen(){
@@ -115,6 +120,8 @@ class ContactActivity : AppCompatActivity() {
         txtPhone.setText("")
         txtEmail.setText("")
         txtAddress.setText("")
+        isEditionMode = false
+        invalidateOptionsMenu()
     }
 
     fun loadEditContact(id: String){
@@ -125,17 +132,9 @@ class ContactActivity : AppCompatActivity() {
             txtPhone.setText(contact.Phone.toString())
             txtEmail.setText(contact.Email)
             txtAddress.setText(contact.Address)
+            isEditionMode = true
         }catch (e: Exception){
             Toast.makeText(this, e.message.toString(),Toast.LENGTH_LONG).show()
         }
-        //val btnDelete = findViewById<MenuItem>(R.id.mnuDelete)
-        //btnDelete.setVisible(false)
-    }
-
-
-    fun addContact(){
-        val contactM= ContactModel(this)
-        var contact = Contact("A100", "Ever", "Barahona", 12354, "ebarahona@utn.ac.cr", "Puntarenas", "Costa Rica")
-        contactM.addContact(contact)
     }
 }
