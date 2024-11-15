@@ -41,4 +41,5 @@
     </string-array>
     <string name="contactCountry">Country</string>
     <string name="promptSelectCountry">Select a Country</string>
+    <string name="contactId">Id</string>
 </resources>

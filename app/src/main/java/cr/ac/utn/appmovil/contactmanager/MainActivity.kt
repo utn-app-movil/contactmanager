@@ -3,14 +3,11 @@ package cr.ac.utn.appmovil.contactmanager
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import cr.ac.utn.appmovil.util.*
 
 class MainActivity : AppCompatActivity() {

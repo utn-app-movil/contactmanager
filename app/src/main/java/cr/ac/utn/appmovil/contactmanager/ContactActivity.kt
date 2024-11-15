@@ -29,13 +29,12 @@ private const val PROVIDER = "cr.ac.utn.appmovil.contactmanager.fileprovider"
 
 class ContactActivity : AppCompatActivity() {
 
+    private lateinit var txtId: EditText
     lateinit var txtName: EditText
     lateinit var txtLastName: EditText
     lateinit var txtPhone: EditText
     lateinit var txtEmail: EditText
     lateinit var txtAddress: EditText
-    var isEdit: Boolean = false
-    var contactIdEdit: String=""
     private val takePicture = 100
     private val selectImage = 101    
     lateinit var imgPhoto: ImageView
@@ -43,11 +42,14 @@ class ContactActivity : AppCompatActivity() {
     lateinit var spCountries: Spinner
     lateinit var countries: List<String>
     lateinit var contactMod: ContactModel
+    private var isEditionMode: Boolean = false
+    private lateinit var menuitemDelete: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact)
 
+        txtId = findViewById<EditText>(R.id.txtContact_Id)
         txtName = findViewById<EditText>(R.id.txtContactName)
         txtLastName = findViewById<EditText>(R.id.txtContactLastName)
         txtPhone = findViewById<EditText>(R.id.txtContactPhone)
@@ -80,7 +82,7 @@ class ContactActivity : AppCompatActivity() {
         })
 
         val contactId = intent.getStringExtra(EXTRA_MESSAGE_CONTACTID)
-        if (contactId != null && contactId != "") isEdit = loadEditContact(contactId.toString())
+        if (contactId != null && contactId != "") isEditionMode = loadEditContact(contactId.toString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -90,7 +92,7 @@ class ContactActivity : AppCompatActivity() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        menu?.findItem(R.id.mnuDelete)?.setVisible(isEdit)
+        menu?.findItem(R.id.mnuDelete)?.setVisible(isEditionMode)
         return true
     }
 
@@ -104,6 +106,10 @@ class ContactActivity : AppCompatActivity() {
                 confirmDelete()
                 true
             }
+            R.id.mnuCancel -> {
+                cleanScreen()
+                return true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -111,6 +117,7 @@ class ContactActivity : AppCompatActivity() {
     fun saveContact(){
         try {
             val contact = Contact()
+            contact.Id = txtId.text.toString()
             contact.Name = txtName.text.toString()
             contact.LastName = txtLastName.text.toString()
             contact.Phone = txtPhone.text.toString()?.toInt()!!
@@ -120,7 +127,7 @@ class ContactActivity : AppCompatActivity() {
             contact.Country = spCountries.selectedItem.toString()
 
             if (dataValidation(contact)){
-                if (!isEdit)
+                if (!isEditionMode)
                     contactMod.addContact(contact)
                 else
                     contactMod.updateContact(contact)
@@ -136,23 +143,28 @@ class ContactActivity : AppCompatActivity() {
     }
 
     fun dataValidation(contact: Contact): Boolean{
-        return contact.Name.length > 0 && contact.LastName.length > 0 && contact.Address.length > 0 && contact.Email.length > 0 && contact.Phone > 0
+        return contact.Id.isNotEmpty() && contact.Name.isNotEmpty() &&
+                contact.LastName.isNotEmpty() && contact.Address.isNotEmpty() &&
+                contact.Email.isNotEmpty() &&
+                (contact.Phone != null && contact.Phone > 0)
     }
 
     fun cleanScreen(){
-        contactIdEdit = ""
-        isEdit=false
+        txtId.setText("")
         txtName.setText("")
         txtLastName.setText("")
         txtPhone.setText("")
         txtEmail.setText("")
         txtAddress.setText("")
+        txtId.isEnabled = true
+        isEditionMode = false
+        invalidateOptionsMenu()
     }
 
     fun loadEditContact(id: String): Boolean{
         try{
             val contact = contactMod.getContact(id)
-            contactIdEdit= contact.FullName.trim()
+            txtId.setText(contact.Id)
             txtName.setText(contact.Name)
             txtLastName.setText(contact.LastName)
             txtPhone.setText(contact.Phone.toString())
@@ -160,6 +172,8 @@ class ContactActivity : AppCompatActivity() {
             txtAddress.setText(contact.Address)
             spCountries.setSelection(countries.indexOf(contact.Country.trim()))
             imgPhoto.setImageBitmap(contact.Photo)
+            isEditionMode = true
+            txtId.isEnabled = false
 
             return true
         }catch (e: Exception){
@@ -176,7 +190,7 @@ class ContactActivity : AppCompatActivity() {
             .setPositiveButton(getString(R.string.Ok), DialogInterface.OnClickListener {
                     dialog, id ->
 
-                contactMod.removeContact(contactIdEdit)
+                contactMod.removeContact(txtId.text.toString())
                 cleanScreen()
                 Toast.makeText(this, getString(R.string.msgDelete).toString(), Toast.LENGTH_LONG).show()
 
@@ -225,7 +239,6 @@ class ContactActivity : AppCompatActivity() {
     fun loadCountries(){
         countries = resources.getStringArray(R.array.Countries).toList()
         if (spCountries != null) {
-            //val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, countries)
             val adapter = ArrayAdapter.createFromResource(this, R.array.Countries, android.R.layout.simple_spinner_item)
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spCountries.adapter = adapter

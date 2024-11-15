@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import cr.ac.utn.appmovil.identities.Contact
 import cr.ac.utn.appmovil.model.ContactModel
@@ -13,22 +12,22 @@ import cr.ac.utn.appmovil.util.util
 
 class ContactListCustomActivity : AppCompatActivity() {
     lateinit var lstContactList : ListView
+    lateinit var model: ContactModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_list_custom)
 
+        model = ContactModel(this)
         lstContactList = findViewById<ListView>(R.id.lstContactListCustom)
-        val contactArray = ArrayList<Contact>(ContactModel.getContacts())
-        val adapter = ContactAdapter(this, R.layout.list_item_contact, ContactModel.getContacts()) // ContactAdapter(this, ArrayList<Contact>(ContactModel.getContacts()))
+        val contactArray = ArrayList<Contact>(model.getContacts())
+        val adapter = ContactAdapter(this, R.layout.list_item_contact, model.getContacts())
         lstContactList.adapter = adapter
 
-        lstContactList.onItemClickListener = object : AdapterView.OnItemClickListener{
-            override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val contacts = ContactModel.getContacts()
-                val name = contacts[position].FullName
-                util.openActivity(applicationContext, ContactActivity::class.java, EXTRA_MESSAGE_CONTACTID, name)
-            }
+        lstContactList.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            val contacts = model.getContacts()
+            val id = contacts[position].Id
+            util.openActivity(this, ContactActivity::class.java, EXTRA_MESSAGE_CONTACTID, id)
         }
     }
 }

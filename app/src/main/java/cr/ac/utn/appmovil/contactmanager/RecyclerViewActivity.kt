@@ -17,8 +17,9 @@ class RecyclerViewActivity : AppCompatActivity(), OnItemClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_view)
 
+        val model = ContactModel(this)
         val recycler =  findViewById<RecyclerView>(R.id.rcvContactList)
-        customAdapter = RecyclerCustomAdapter(ContactModel.getContacts(), this)
+        customAdapter = RecyclerCustomAdapter(model.getContacts(), this)
         val layoutManager = LinearLayoutManager(applicationContext)
         recycler.layoutManager = layoutManager
         recycler.adapter = customAdapter
@@ -26,6 +27,6 @@ class RecyclerViewActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     override fun onItemClicked  (contact: Contact) {
-        util.openActivity(this, ContactActivity::class.java, EXTRA_MESSAGE_CONTACTID, contact.FullName)
+        util.openActivity(this, ContactActivity::class.java, EXTRA_MESSAGE_CONTACTID, contact.Id)
     }
 }
